@@ -35,5 +35,6 @@ namespace :rvm do
   end
 end
 
-after "deploy:update_code", "rvm:trust_rvmrc"
-after "deploy:finalize_update", "db:symlink"
+before "deploy:finalize_update", "rvm:trust_rvmrc"
+after  "deploy:finalize_update", "db:symlink"
+after  "db:symlink", "deploy:migrate"

@@ -14,6 +14,7 @@ end
 
 group :production do
   gem 'mysql2'
+  gem 'therubyracer'
 end
 
 gem 'jquery-rails'

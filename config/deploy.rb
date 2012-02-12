@@ -1,6 +1,7 @@
 $:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
 require "rvm/capistrano"
 require "bundler/capistrano"
+load "deploy/assets"
 
 set :rvm_ruby_string, 'ruby-1.9.3'
 set :application, "battlemasters"

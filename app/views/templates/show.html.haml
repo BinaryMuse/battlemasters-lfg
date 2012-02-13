@@ -1,14 +1,49 @@
-%h1 Testing
-
-%p Oh yeah, that's what I'm talkin about!
-
-.deathknight Death Knight
-.druid Druid
-.hunter Hunter
-.mage Mage
-.paladin Paladin
-.priest Priest
-.rogue Rogue
-.shaman Shaman
-.warlock Warlock
-.warrior Warrior
+%table.borderless
+  %tr.header
+    %th Faction
+    %th Character
+    %th Realm
+    %th Class
+    %th Main Spec
+    %th Off Spec
+    %th
+      Current
+      %br
+      Rating
+    %th
+      Highest
+      %br
+      Rank
+    %th
+      %span{'data-tooltip' => 'Total Resilience'} Resil
+    %th
+      %span{'data-tooltip' => 'Average Item Level'} iLvl
+    %th IRC Name
+  %tr.medium
+    %td H
+    %td
+      %a.druid{href: "http://us.battle.net/wow/en/character/nazjatar/Cyaga/advanced"} Cyaga
+    %td
+      %span{'data-tooltip' => 'Shadowburn'} Nazjatar
+    %td.druid Druid
+    %td Resto
+    %td Feral (cat)
+    %td 2800
+    %td Peon
+    %td 9001
+    %td 416
+    %td [H]-Cyaga
+  %tr.alt_light
+    %td H
+    %td
+      %a.deathknight{href: "http://us.battle.net/wow/en/character/nazjatar/Mortawa/advanced"} Mortawa
+    %td
+      %span{'data-tooltip' => 'Shadowburn'} Nazjatar
+    %td.deathknight Death Knight
+    %td Blood
+    %td Unholy
+    %td 1800
+    %td Junkie
+    %td 1337
+    %td 200
+    %td [H]-Mortawa

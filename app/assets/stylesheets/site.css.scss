@@ -4,15 +4,64 @@ body {
   background-color: $bg_dark_color;
   color: $text_color;
   font: $body_font;
+  font-size: $body_font_size;
 }
 
-.deathknight { color: $class_color_deathknight; }
-.druid       { color: $class_color_druid;       }
-.hunter      { color: $class_color_hunter;      }
-.mage        { color: $class_color_mage;        }
-.paladin     { color: $class_color_paladin;     }
-.priest      { color: $class_color_priest;      }
-.rogue       { color: $class_color_rogue;       }
-.shaman      { color: $class_color_shaman;      }
-.warlock     { color: $class_color_warlock;     }
-.warrior     { color: $class_color_warrior;     }
+a { color: $link_color; }
+a:visited { color: $link_visited_color; }
+a:hover { color: $text-color; }
+
+a.deathknight, .deathknight { color: $class_color_deathknight; }
+a.druid      , .druid       { color: $class_color_druid;       }
+a.hunter     , .hunter      { color: $class_color_hunter;      }
+a.mage       , .mage        { color: $class_color_mage;        }
+a.paladin    , .paladin     { color: $class_color_paladin;     }
+a.priest     , .priest      { color: $class_color_priest;      }
+a.rogue      , .rogue       { color: $class_color_rogue;       }
+a.shaman     , .shaman      { color: $class_color_shaman;      }
+a.warlock    , .warlock     { color: $class_color_warlock;     }
+a.warrior    , .warrior     { color: $class_color_warrior;     }
+
+span.tooltip {
+  border: 1px solid black;
+  background-color: #FFC;
+  color: black;
+  padding: 2px;
+}
+
+[data-tooltip] {
+  border-bottom: 1px dotted $text_color;
+  cursor: help;
+}
+
+table {
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+
+  th, td {
+    padding: 6px 5px;
+    text-align: left;
+  }
+}
+
+.header {
+  background-color: $bg_light_color;
+  vertical-align: bottom;
+}
+
+.light {
+  background-color: $bg_light_color;
+}
+
+.alt_light {
+  background-color: $bg_alt_light_color;
+}
+
+.medium {
+  background-color: $bg_medium_color;
+}
+
+.dark {
+  background-color: $bg_dark_color;
+}

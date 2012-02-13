@@ -1,0 +1,18 @@
+@import 'common';
+
+body {
+  background-color: $bg_dark_color;
+  color: $text_color;
+  font: $body_font;
+}
+
+.deathknight { color: $class_color_deathknight; }
+.druid       { color: $class_color_druid;       }
+.hunter      { color: $class_color_hunter;      }
+.mage        { color: $class_color_mage;        }
+.paladin     { color: $class_color_paladin;     }
+.priest      { color: $class_color_priest;      }
+.rogue       { color: $class_color_rogue;       }
+.shaman      { color: $class_color_shaman;      }
+.warlock     { color: $class_color_warlock;     }
+.warrior     { color: $class_color_warrior;     }

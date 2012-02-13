@@ -11,7 +11,6 @@ namespace :icons do
     downloaded_specs = []
     profiles = [
       "http://us.battle.net/wow/en/character/tichondrius/Mes/simple",
-      "http://us.battle.net/wow/en/character/tichondrius/Mes/simple",
       "http://us.battle.net/wow/en/character/mugthol/Subtronix/simple",
       "http://us.battle.net/wow/en/character/kelthuzad/Thegodofdmg/simple",
       "http://us.battle.net/wow/en/character/kelthuzad/Ludachris/simple",

@@ -19,6 +19,11 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+
+  desc "Symlink secrets not stored in repository"
+  task :symlink_secrets do
+    run "ln -nfs #{shared_path}/config/initializers/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
+  end
 end
 
 namespace :db do
@@ -36,5 +41,6 @@ namespace :rvm do
 end
 
 before "deploy:finalize_update", "rvm:trust_rvmrc"
+after  "deploy:finalize_update", "deploy:symlink_secrets"
 after  "deploy:finalize_update", "db:symlink"
 after  "db:symlink", "deploy:migrate"

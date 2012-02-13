@@ -1,4 +1,4 @@
-class MainController < ApplicationController
+class TemplatesController < ApplicationController
   def show
   end
 end

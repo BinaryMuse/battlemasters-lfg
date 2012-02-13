@@ -1,3 +1,3 @@
 Battlemasters::Application.routes.draw do
-  root to: "main#index"
+  root to: "templates#show"
 end

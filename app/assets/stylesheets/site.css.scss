@@ -7,6 +7,10 @@ body {
   font-size: $body_font_size;
 }
 
+.container {
+  text-align: center;
+}
+
 a { color: $link_color; }
 a:visited { color: $link_visited_color; }
 a:hover { color: $text-color; }
@@ -38,6 +42,7 @@ table {
   padding: 0;
   margin: 0;
   border-spacing: 0;
+  margin: 0 auto;
 
   tr {
   }

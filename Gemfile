@@ -19,5 +19,6 @@ end
 
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'haml'
 
 gem 'capistrano'

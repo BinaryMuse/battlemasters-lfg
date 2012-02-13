@@ -1,10 +1,9 @@
 %table.borderless
   = image_tag 'buttons/join.gif', 'data-rollover' => image_path('buttons/join_over.gif'), :class => 'button'
   %tr.header
-    %th Faction
+    %th
     %th Character
     %th Realm
-    %th Class
     %th Main Spec
     %th Off Spec
     %th
@@ -20,14 +19,18 @@
     %th
       %span{'data-tooltip' => 'Average Item Level'} iLvl
     %th IRC Name
+    %th
+      %span{'data-tooltip' => 'Time in List'} Time
     %th Notes
   %tr.medium
-    %td H
     %td
+      = image_tag 'blizzard/faction_1.jpg', class: 'icon'
+    %td
+      = image_tag 'blizzard/race_6_0.jpg', class: 'icon'
+      = image_tag 'blizzard/class_11.jpg', class: 'icon'
       %a.druid{href: "http://us.battle.net/wow/en/character/nazjatar/Cyaga/advanced"} Cyaga
     %td
       %span{'data-tooltip' => 'Shadowburn'} Nazjatar
-    %td.druid Druid
     %td Resto
     %td Feral (cat)
     %td 2800
@@ -35,15 +38,18 @@
     %td 9001
     %td 416
     %td [H]-Cyaga
+    %td 20 min
     %td
       = image_tag 'icons/note.png', 'data-tooltip' => "BLACK MAGIC"
   %tr.alt_light
-    %td H
     %td
+      = image_tag 'blizzard/faction_1.jpg', class: 'icon'
+    %td
+      = image_tag 'blizzard/race_6_0.jpg', class: 'icon'
+      = image_tag 'blizzard/class_6.jpg', class: 'icon'
       %a.deathknight{href: "http://us.battle.net/wow/en/character/nazjatar/Mortawa/advanced"} Mortawa
     %td
       %span{'data-tooltip' => 'Shadowburn'} Nazjatar
-    %td.deathknight Death Knight
     %td Blood
     %td Unholy
     %td 1800
@@ -51,14 +57,17 @@
     %td 1337
     %td 200
     %td [H]-Mortawa
+    %td 27 min
     %td
   %tr.medium
-    %td H
     %td
+      = image_tag 'blizzard/faction_1.jpg', class: 'icon'
+    %td
+      = image_tag 'blizzard/race_9_1.jpg', class: 'icon'
+      = image_tag 'blizzard/class_7.jpg', class: 'icon'
       %a.shaman{href: "http://us.battle.net/wow/en/character/nazjatar/Iemonandlime/advanced"} Iemonandlime
     %td
       %span{'data-tooltip' => 'Shadowburn'} Nazjatar
-    %td.shaman Shaman
     %td Resto
     %td Enhance
     %td 1234
@@ -66,15 +75,18 @@
     %td 9001
     %td 416
     %td [H]-Iemonandlime
+    %td 35 min
     %td
       = image_tag 'icons/note.png', 'data-tooltip' => "Cutest goblin shaman"
   %tr.alt_light
-    %td A
     %td
+      = image_tag 'blizzard/faction_0.jpg', class: 'icon'
+    %td
+      = image_tag 'blizzard/race_1_0.jpg', class: 'icon'
+      = image_tag 'blizzard/class_2.jpg', class: 'icon'
       %a.paladin{href: "http://us.battle.net/wow/en/character/nazjatar/MMMMMMMMMMMM/advanced"} MMMMMMMMMMMM
     %td
       %span{'data-tooltip' => 'Super Long Battlegroup Yo'} Long-Ass Realm Name
-    %td.paladin Paladin
     %td Prot
     %td Holy
     %td 1800
@@ -82,5 +94,6 @@
     %td 1337
     %td 200
     %td [A]-MMMMMMMMMMMM
+    %td 44 min
     %td
       = image_tag 'icons/note.png', 'data-tooltip' => "Man his name is long"

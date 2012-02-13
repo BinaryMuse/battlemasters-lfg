@@ -45,6 +45,11 @@ table {
   }
 }
 
+.button {
+  margin: 5px;
+  cursor: pointer;
+}
+
 .header {
   background-color: $bg_light_color;
   vertical-align: bottom;

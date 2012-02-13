@@ -10,3 +10,11 @@ jQuery ->
     mouseout = ->
       $(this).data('tooltip-el').remove()
     $(el).hover mouseover, mouseout
+
+  $("[data-rollover]").each (index, el) ->
+    mouseover = ->
+      $(this).data 'orig-src', $(this).attr('src')
+      $(this).attr 'src', $(this).data('rollover')
+    mouseout = ->
+      $(this).attr 'src', $(this).data('orig-src')
+    $(el).hover mouseover, mouseout

@@ -1,4 +1,5 @@
 %table.borderless
+  = image_tag 'buttons/join.gif', 'data-rollover' => image_path('buttons/join_over.gif'), :class => 'button'
   %tr.header
     %th Faction
     %th Character
@@ -67,3 +68,19 @@
     %td [H]-Iemonandlime
     %td
       = image_tag 'icons/note.png', 'data-tooltip' => "Cutest goblin shaman"
+  %tr.alt_light
+    %td A
+    %td
+      %a.paladin{href: "http://us.battle.net/wow/en/character/nazjatar/MMMMMMMMMMMM/advanced"} MMMMMMMMMMMM
+    %td
+      %span{'data-tooltip' => 'Super Long Battlegroup Yo'} Long-Ass Realm Name
+    %td.paladin Paladin
+    %td Prot
+    %td Holy
+    %td 1800
+    %td Junkie
+    %td 1337
+    %td 200
+    %td [A]-MMMMMMMMMMMM
+    %td
+      = image_tag 'icons/note.png', 'data-tooltip' => "Man his name is long"

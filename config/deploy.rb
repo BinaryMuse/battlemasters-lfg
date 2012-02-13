@@ -3,13 +3,13 @@ require "rvm/capistrano"
 require "bundler/capistrano"
 load "deploy/assets"
 
-set :rvm_ruby_string, 'ruby-1.9.3'
-set :application, "battlemasters"
-set :repository,  "git@github.com:BinaryMuse/battlemasters-lfg.git"
-set :user,        "battlemasters"
-set :deploy_to,   "/var/www/vhosts/battlemasters.org/"
-set :scm,         :git
-set :use_sudo,    false
+set :rvm_ruby_string, "ruby-1.9.3"
+set :application,     "battlemasters"
+set :repository,      "git@github.com:BinaryMuse/battlemasters-lfg.git"
+set :user,            "battlemasters"
+set :deploy_to,       "/var/www/vhosts/battlemasters.org/"
+set :scm,             :git
+set :use_sudo,        false
 
 server "muse", :app, :web, :db, :primary => true
 

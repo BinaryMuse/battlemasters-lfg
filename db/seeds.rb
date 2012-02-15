@@ -4,7 +4,7 @@ Listing.create!({
   race: 6,
   character_class: 11,
   main_spec: "Restoration",
-  off_spec: "Feral",
+  off_spec: "Feral Combat",
   rating: 1234,
   rank: "Peon",
   resilience: 4000,

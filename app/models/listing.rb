@@ -8,7 +8,7 @@ class Listing < ActiveRecord::Base
   before_validation :set_faction_by_race
 
   def self.active
-    where("created_at > ?", 1.hour.ago)
+    where("created_at > ?", 1.hour.ago).order("created_at DESC")
   end
 
 private

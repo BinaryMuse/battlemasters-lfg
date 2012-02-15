@@ -24,3 +24,24 @@ jQuery ->
     mouseout = ->
       $(this).attr 'src', $(this).data('orig-src')
     $(el).hover mouseover, mouseout
+
+  $("#add_button").click ->
+    $("#new_listing").slideDown()
+    check_values = ->
+      realm = $("input#add_realm").val()
+      char = $("input#add_character").val()
+      if realm? && realm != "" && char? && char != ""
+        alert "done"
+    $("form#add input#add_realm").change check_values
+    $("form#add input#add_character").change check_values
+
+  window.original_spec_options = $("#listing_main_spec").html()
+  filter_spec_lists = ->
+    id = $("#listing_character_class").val()
+    options = $(original_spec_options).filter("option[data-class='#{id}']")
+    $("#listing_main_spec").empty().append(options)
+    $("#listing_off_spec").empty().append(options.clone())
+
+  $("#listing_character_class").change (evt) ->
+    filter_spec_lists()
+  filter_spec_lists()

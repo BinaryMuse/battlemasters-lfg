@@ -1,0 +1,10 @@
+.container
+  = image_tag 'logo.png'
+  %br
+  - if @listings.any?
+    = image_tag 'buttons/join.gif', 'data-rollover' => image_path('buttons/join_over.gif'), class: 'button', id: 'add_button'
+    = render 'add_form'
+    = render "list", listings: @listings
+  - else
+    %h2 No one's in the LFG list yet! Add your name if you're interested!
+    = render 'add_form', style: 'display: block'

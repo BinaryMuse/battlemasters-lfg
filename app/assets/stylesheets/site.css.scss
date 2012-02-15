@@ -91,3 +91,8 @@ img.icon {
 .dark {
   background-color: $bg_dark_color;
 }
+
+div.field_with_errors {
+  display: inline;
+  background: red;
+}

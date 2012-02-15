@@ -3,7 +3,7 @@ module ListingsHelper
     if faction == "alliance"
       image_tag "blizzard/faction_0.jpg", *args
     else
-      image_tag "blizzard/faction_0.jpg", *args
+      image_tag "blizzard/faction_1.jpg", *args
     end
   end
 

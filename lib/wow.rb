@@ -1,4 +1,37 @@
 module Wow
+  RACES = {
+    1  => :human,
+    2  => :orc,
+    3  => :dwarf,
+    4  => :night_elf,
+    5  => :undead,
+    6  => :tauren,
+    7  => :gnome,
+    8  => :troll,
+    9  => :goblin,
+    10 => :blood_elf,
+    11 => :draenei,
+    22 => :worgen
+  }
+
+  ALLIANCE_RACES = [1, 3, 4, 7, 11, 22]
+  HORDE_RACES    = [2, 5, 6, 8, 9, 10]
+
+  def self.faction_by_race(faction)
+    if ALLIANCE_RACES.include? faction
+      "alliance"
+    elsif HORDE_RACES.include? faction
+      "horde"
+    else
+      nil
+    end
+  end
+
+  GENDERS = {
+    0 => :male,
+    1 => :female
+  }
+
   CLASSES = {
     1  => :warrior,
     2  => :paladin,

@@ -5,3 +5,4 @@
 * Gracefully handle API outages
 * Limit entries to level 85 characters
 * Auto-complete realm field
+* Make current rating, highest rank, and resilience un-editable in the join list confirm dialog

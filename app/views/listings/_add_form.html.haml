@@ -1,6 +1,6 @@
 - style ||= 'display: none'
 - style = 'display: block' if @listing.errors.any?
-= form_for @listing, html: { style: style } do |f|
+= form_for :step_1, html: { id: "step_1", style: style } do |f|
   .section
     = f.label :realm
     = f.text_field :realm
@@ -8,21 +8,31 @@
     = f.text_field :character
     = f.label :irc_name, "(Optional) IRC Name"
     = f.text_field :irc_name
-  .section
-    = f.label :race
-    = f.select :race, Wow::RACES.invert.map { |k,v| [k.capitalize, v] }
-    = f.label :character_class, "Class"
-    = f.select :character_class, Wow::CLASSES.invert.map { |k,v| [k.capitalize, v] }
-    = f.label :main_spec, "Main Spec"
-    = f.select :main_spec, options_for_spec_select
-    = f.label :off_spec, "Off Spec"
-    = f.select :off_spec, options_for_spec_select
-  .section
-    = f.label :rating, "Current Rating"
-    = f.text_field :rating, size: 10
-    = f.label :rank, "Highest Rank"
-    = f.text_field :rank, size: 20
-    = f.label :resilience
-    = f.text_field :resilience, size: 10
-  .section
-    = f.submit "Add Me to the List!"
+  .section#step_1_button
+    = f.submit "Add My Character"
+= form_for @listing, html: { style: 'display: none' } do |f|
+  .section#step_2
+    .section
+      = f.hidden_field :realm
+      = f.hidden_field :character
+      = f.hidden_field :irc_name
+      = f.label :race
+      = f.select :race, Wow::RACES.invert.map { |k,v| [k.capitalize, v] }
+      = f.label :character_class, "Class"
+      = f.select :character_class, Wow::CLASSES.invert.map { |k,v| [k.capitalize, v] }
+      = f.label :main_spec, "Main Spec"
+      = f.select :main_spec, options_for_spec_select
+      = f.label :off_spec, "Off Spec"
+      = f.select :off_spec, options_for_spec_select
+    .section
+      = f.label :rating, "Current Rating"
+      = f.text_field :rating, size: 10
+      = f.label :rank, "Highest Rank"
+      = f.text_field :rank, size: 20
+      = f.label :resilience
+      = f.text_field :resilience, size: 10
+    .section
+      = f.label :notes, "(Optional) Notes"
+      = f.text_field :notes, size: 80
+    .section
+      = f.submit "Add Me to the List!"

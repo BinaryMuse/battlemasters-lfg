@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215040020) do
+ActiveRecord::Schema.define(:version => 20120218190156) do
 
   create_table "listings", :force => true do |t|
     t.string   "faction"
@@ -27,8 +27,9 @@ ActiveRecord::Schema.define(:version => 20120215040020) do
     t.integer  "item_level"
     t.string   "irc_name"
     t.text     "notes"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "gender",          :default => 0
   end
 
 end

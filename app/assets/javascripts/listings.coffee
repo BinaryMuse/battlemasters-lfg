@@ -1,4 +1,6 @@
 jQuery ->
+  $("#listings").tablesorter()
+
   $("#add_button").click ->
     $("#step_1").slideDown()
     check_values = ->

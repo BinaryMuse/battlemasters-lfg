@@ -1,48 +1,50 @@
-%table.borderless{style: 'text-align: center'}
-  %tr.header
-    %th
-    %th Character
-    %th Realm
-    %th
-      %span{'data-tooltip' => 'Main Spec'} MS
-    %th
-      %span{'data-tooltip' => 'Off Spec'} OS
-    %th
-      Current
-      %br
-      Rating
-    %th
-      Highest
-      %br
-      Rank
-    %th
-      %span{'data-tooltip' => 'Total Resilience'} Resil
-    %th
-      %span{'data-tooltip' => 'Average Item Level'} iLvl
-    %th IRC Name
-    %th
-      %span{'data-tooltip' => 'Time in List'} Time
-    %th Notes
-  - @listings.each do |listing|
-    %tr{class: cycle('medium', 'alt_light')}
-      %td
-        = image_tag_for_faction listing.faction, class: 'icon'
-      %td
-        = image_tag "blizzard/race_#{listing.race}_#{listing.gender}.jpg", class: 'icon'
-        = image_tag "blizzard/class_#{listing.character_class}.jpg", class: 'icon'
-        %a{class: Wow::CLASSES[listing.character_class], href: listing.character_url, target: "_blank"}= listing.character
-      %td
-        %span{'data-tooltip' => 'Battlegroup'}= listing.realm
-      %td
-        = image_tag_for_spec listing.character_class, listing.main_spec, 'data-tooltip' => listing.main_spec
-      %td
-        = image_tag_for_spec listing.character_class, listing.off_spec, 'data-tooltip' => listing.off_spec
-      %td= listing.rating
-      %td= listing.rank
-      %td= listing.resilience
-      %td= listing.item_level
-      %td= listing.irc_name
-      %td= time_in_list(listing.created_at)
-      %td
-        - unless listing.notes.blank?
-          = image_tag 'icons/note.png', 'data-tooltip' => "#{listing.notes}"
+%table#listings.borderless{style: 'text-align: center'}
+  %thead
+    %tr.header
+      %th
+      %th Character
+      %th Realm
+      %th
+        %span{'data-tooltip' => 'Main Spec'} MS
+      %th
+        %span{'data-tooltip' => 'Off Spec'} OS
+      %th
+        Current
+        %br
+        Rating
+      %th
+        Highest
+        %br
+        Rank
+      %th
+        %span{'data-tooltip' => 'Total Resilience'} Resil
+      %th
+        %span{'data-tooltip' => 'Average Item Level'} iLvl
+      %th IRC Name
+      %th
+        %span{'data-tooltip' => 'Time in List'} Time
+      %th Notes
+  %tbody
+    - @listings.each do |listing|
+      %tr{class: cycle('medium', 'alt_light')}
+        %td
+          = image_tag_for_faction listing.faction, class: 'icon'
+        %td
+          = image_tag "blizzard/race_#{listing.race}_#{listing.gender}.jpg", class: 'icon'
+          = image_tag "blizzard/class_#{listing.character_class}.jpg", class: 'icon'
+          %a{class: Wow::CLASSES[listing.character_class], href: listing.character_url, target: "_blank"}= listing.character
+        %td
+          %span{'data-tooltip' => 'Battlegroup'}= listing.realm
+        %td
+          = image_tag_for_spec listing.character_class, listing.main_spec, 'data-tooltip' => listing.main_spec
+        %td
+          = image_tag_for_spec listing.character_class, listing.off_spec, 'data-tooltip' => listing.off_spec
+        %td= listing.rating
+        %td= listing.rank
+        %td= listing.resilience
+        %td= listing.item_level
+        %td= listing.irc_name
+        %td= time_in_list(listing.created_at)
+        %td
+          - unless listing.notes.blank?
+            = image_tag 'icons/note.png', 'data-tooltip' => "#{listing.notes}"

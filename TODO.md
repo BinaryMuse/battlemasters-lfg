@@ -6,3 +6,4 @@
 * Limit entries to level 85 characters
 * Auto-complete realm field
 * Make current rating, highest rank, and resilience un-editable in the join list confirm dialog
+* Dissallow duplicate entries, and have duplicate entry requests bump the original entry.

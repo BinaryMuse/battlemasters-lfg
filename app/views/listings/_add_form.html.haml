@@ -16,6 +16,7 @@
       = f.hidden_field :realm
       = f.hidden_field :character
       = f.hidden_field :irc_name
+      = f.hidden_field :gender
       = f.label :race
       = f.select :race, Wow::RACES.invert.map { |k,v| [k.capitalize, v] }
       = f.label :character_class, "Class"

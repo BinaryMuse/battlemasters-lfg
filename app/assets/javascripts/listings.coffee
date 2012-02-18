@@ -39,6 +39,7 @@ jQuery ->
       form.find("#listing_character").val(data.name)
       form.find("#listing_irc_name").val(char.irc)
       form.find("#listing_race").val(data.race)
+      form.find("#listing_gender").val(data.gender)
       form.find("#listing_character_class").val(data.class)
       form.find("#listing_character_class").trigger('change')
       form.find("#listing_main_spec").val(data.talents[0].name)

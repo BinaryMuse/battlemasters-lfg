@@ -28,7 +28,7 @@
       %td
         = image_tag_for_faction listing.faction, class: 'icon'
       %td
-        = image_tag "blizzard/race_#{listing.race}_0.jpg", class: 'icon'
+        = image_tag "blizzard/race_#{listing.race}_#{listing.gender}.jpg", class: 'icon'
         = image_tag "blizzard/class_#{listing.character_class}.jpg", class: 'icon'
         %a{class: Wow::CLASSES[listing.character_class], href: listing.character_url, target: "_blank"}= listing.character
       %td

@@ -30,7 +30,7 @@
       %td
         = image_tag "blizzard/race_#{listing.race}_0.jpg", class: 'icon'
         = image_tag "blizzard/class_#{listing.character_class}.jpg", class: 'icon'
-        %a{class: Wow::CLASSES[listing.character_class], href: "http://us.battle.net/wow/en/character/nazjatar/Cyaga/advanced"}= listing.character
+        %a{class: Wow::CLASSES[listing.character_class], href: listing.character_url, target: "_blank"}= listing.character
       %td
         %span{'data-tooltip' => 'Battlegroup'}= listing.realm
       %td

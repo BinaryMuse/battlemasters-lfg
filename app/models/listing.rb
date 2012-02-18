@@ -1,3 +1,5 @@
+require 'cgi'
+
 class Listing < ActiveRecord::Base
   validates_inclusion_of :character_class, in: Wow::CLASSES.keys
   validates_inclusion_of :race, in: Wow::RACES.keys
@@ -9,6 +11,13 @@ class Listing < ActiveRecord::Base
 
   def self.active
     where("created_at > ?", 1.hour.ago).order("created_at DESC")
+  end
+
+  # TODO: Move to presenter
+  def character_url
+    realm = CGI.escape self.realm
+    character = CGI.escape self.character
+    "http://us.battle.net/wow/en/character/#{realm}/#{character}/advanced"
   end
 
 private

@@ -8,6 +8,7 @@ table {
 
   th, td {
     padding: 6px 5px;
+    padding-left: 14px;
     text-align: left;
     img {
       vertical-align: top;
@@ -31,4 +32,27 @@ form {
 
 .section {
   padding-bottom: 5px;
+}
+
+tr {
+  background-color: $bg_medium_color;
+}
+
+tr:nth-child(2n) {
+  background-color: $bg_alt_light_color;
+}
+
+th {
+  margin-right: 20px;
+  background-image: image-url('table/both.png');
+  background-repeat: no-repeat;
+  background-position: left 80%;
+}
+
+th.headerSortUp {
+  background-image: image-url('table/up.png');
+}
+
+th.headerSortDown {
+  background-image: image-url('table/down.png');
 }

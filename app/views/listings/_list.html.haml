@@ -26,7 +26,7 @@
       %th Notes
   %tbody
     - @listings.each do |listing|
-      %tr{class: cycle('medium', 'alt_light')}
+      %tr
         %td
           = image_tag_for_faction listing.faction, class: 'icon'
         %td

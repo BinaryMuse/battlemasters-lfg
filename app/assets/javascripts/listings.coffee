@@ -45,6 +45,7 @@ jQuery ->
       form.find("#listing_off_spec").val(data.talents[1].name)
       form.find("#listing_rating").val(data.pvp.ratedBattlegrounds.personalRating)
       form.find("#listing_resilience").val(data.stats.resil)
+      $("#add_button").slideUp()
       form.slideDown()
 
 

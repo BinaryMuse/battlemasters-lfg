@@ -1,62 +1,138 @@
+window.app = {}
+
+capitalize = (str) ->
+  (str.split(' ').map (word) -> word[0].toUpperCase() + word[1..-1].toLowerCase()).join(' ')
+
+
 jQuery ->
-  $("#listings").tablesorter()
+  class app.Listing extends Backbone.Model
 
-  $("#add_button").click ->
-    $("#step_1").slideDown()
-    check_values = ->
-      realm = $("input#add_realm").val()
-      char = $("input#add_character").val()
-      if realm? && realm != "" && char? && char != ""
-        alert "done"
-    $("form#add input#add_realm").change check_values
-    $("form#add input#add_character").change check_values
+  class app.Lookup extends Backbone.Model
+    validate: (attrs) ->
+      unless attrs.realm? && attrs.realm != ""
+        return "Realm cannot be blank."
+      unless attrs.character? && attrs.character != ""
+        return "Character name cannot be blank."
 
-  window.original_spec_options = $("#listing_main_spec").html()
-  filter_spec_lists = ->
-    id = $("#listing_character_class").val()
-    options = $(original_spec_options).filter("option[data-class='#{id}']")
-    $("#listing_main_spec").empty().append(options)
-    $("#listing_off_spec").empty().append(options.clone())
+      null
 
-  $("#listing_character_class").change (evt) ->
-    filter_spec_lists()
-  filter_spec_lists()
+    lookup: =>
+      url = "http://us.battle.net/api/wow/character/#{@get('realm')}/#{@get('character')}?fields=talents,stats,pvp&jsonp=?"
+      $.jsonp
+        context: this
+        cache: false
+        url: url
+        error: (xOptions, textStatus) ->
+          @trigger 'lookupFailure', textStatus
+        success: (json, textStatus) ->
+          @trigger 'lookupSuccess', json
+        timeout: 5000
 
-  capitalize = (str) ->
-    (str.split(' ').map (word) -> word[0].toUpperCase() + word[1..-1].toLowerCase()).join(' ')
+  class app.Listings extends Backbone.Collection
+    model: app.Listing
 
-  startCharacterFind = (char) ->
-    xhr = $.getJSON "http://us.battle.net/api/wow/character/#{char.realm}/#{char.character}?fields=talents,stats,pvp&jsonp=?", (data) ->
-      $("#step_1").slideUp()
-      console.log data
-      gender = data.gender
-      klass  = data.class
-      race   = data.race
-      main_spec =
-        name: data.talents[0].name
-        icon: data.talents[0].icon
-      # alert "Found #{data.name} from #{data.realm}, the #{capitalize wow.races[data.race]} #{capitalize wow.classes[data.class]}"
-      form = $("#new_listing")
+  class app.Table extends Backbone.View
+    el: "#listings"
+
+    initialize: ->
+      @collection.on 'reset', @refreshTable
+
+    refreshTable: =>
+      console.log @collection
+
+  class app.Form extends Backbone.View
+    el: "#add_form"
+    events:
+      'submit #step_1': 'submitStep1'
+
+    initialize: ->
+      @parent = @options.container
+      @parent.on 'showForm', @showStep1
+
+    showStep1: =>
+      @$('#step_1').slideDown()
+
+    hideStep1: =>
+      @$('#step_1').slideUp()
+
+    showNewListing: =>
+      @$('#new_listing').slideDown()
+
+    hideNewListing: =>
+      @$('#new_listing').slideUp()
+
+    submitStep1: (evt) =>
+      evt.preventDefault()
+
+      lookup = new app.Lookup
+        realm: @$('#step_1_realm').val()
+        character: @$('#step_1_character').val()
+
+      if lookup.isValid()
+        lookup.on 'lookupFailure', @lookupFailure
+        lookup.on 'lookupSuccess', @lookupSuccess
+        lookup.lookup()
+        @disableStep1()
+      else
+        alert "Please enter a realm and character name"
+
+    lookupFailure: (status) =>
+      if status == "timeout"
+        alert "Couldn't fetch your character from the Battle.net API. The API may not be working at this time. Please try again in a few minutes."
+      if status == "error"
+        alert "Couldn't find your character. Are you sure you spelled your realm and character name correctly?"
+      @enableStep1()
+
+    lookupSuccess: (data) =>
+      @populateAddForm(data)
+      @showNewListing()
+      @hideStep1()
+      $("#add_button").slideUp()
+
+    populateAddForm: (data) =>
+      form = @$("#new_listing")
       form.find("#listing_realm").val(data.realm)
       form.find("#listing_character").val(data.name)
-      form.find("#listing_irc_name").val(char.irc)
       form.find("#listing_race").val(data.race)
+      form.find("#display_race").text(capitalize window.wow.races[data.race])
       form.find("#listing_gender").val(data.gender)
       form.find("#listing_character_class").val(data.class)
-      form.find("#listing_character_class").trigger('change')
+      form.find("#display_character_class").text(capitalize window.wow.classes[data.class])
+      @filterSpec(form, data.class)
       form.find("#listing_main_spec").val(data.talents[0].name)
       form.find("#listing_off_spec").val(data.talents[1].name)
       form.find("#listing_rating").val(data.pvp.ratedBattlegrounds.personalRating)
       form.find("#listing_resilience").val(data.stats.resil)
-      $("#add_button").slideUp()
-      form.slideDown()
+      form.find("#display_rating").text(data.pvp.ratedBattlegrounds.personalRating)
+      form.find("#display_resilience").text(data.stats.resil)
 
+    filterSpec: (form, klass) =>
+      selects = $("#listing_main_spec, #listing_off_spec")
+      selects.empty()
+      for spec, icon of wow.specs[klass]
+        option = $("<option>").val(spec).text(spec)
+        selects.append option
 
-  $("#step_1").submit (evt) ->
-    $(this).find("[type='submit']").val("Fetching...")
-    $(this).find('input').attr('disabled', true)
-    startCharacterFind
-      realm: $("#step_1_realm").val()
-      character: $("#step_1_character").val()
-      irc: $("#step_1_irc_name").val()
-    evt.preventDefault()
+    disableStep1: =>
+      @$('#step_1 input').attr('disabled', true)
+      @$('#step_1 input[type=submit]').val("Fetching...")
+
+    enableStep1: =>
+      @$('#step_1 input').attr('disabled', false)
+      @$('#step_1 input[type=submit]').val("Add My Character")
+
+  class app.AppView extends Backbone.View
+    el: ".container"
+    events:
+      'click #add_button': 'showForm'
+
+    initialize: ->
+      @form = new app.Form(container: this)
+
+    showForm: =>
+      @trigger 'showForm'
+
+  listings = new app.Listings
+  table = new app.Table(collection: listings)
+  appView = new app.AppView
+  listings.reset $("#listings").data("listings")

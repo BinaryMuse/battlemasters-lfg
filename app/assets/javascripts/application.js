@@ -14,4 +14,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.tablesorter-min.js
+//= require underscore
+//= require backbone
 //= require_tree .

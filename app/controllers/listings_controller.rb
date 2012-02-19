@@ -2,6 +2,8 @@ class ListingsController < ApplicationController
   def index
     @listings = Listing.active
     @listing  = Listing.new
+    logger.info "Request IP is #{request.remote_ip}"
+    logger.info "Forwarded IP is #{request.env["HTTP_X_FORWARDED_FOR"]}"
   end
 
   def create

@@ -1,4 +1,8 @@
 jQuery ->
+  hideFlash = ->
+    $(".flash").slideUp()
+  setTimeout hideFlash, 5000
+
   $("[data-tooltip]").each (index, el) ->
     mouseover = (evt) ->
       windowWidth = $(window).width()

@@ -68,3 +68,23 @@ div.field_with_errors {
   display: inline;
   background: red;
 }
+
+div.flash {
+  margin: 0 auto;
+  width: 600px;
+  padding: 5px;
+  text-align: center;
+  font-size: 14pt;
+
+  &.notice {
+    color: black;
+    border: 2px solid green;
+    background-color: #C6D880;
+  }
+
+  &.alert {
+    color: black;
+    border: 2px solid red;
+    background-color: #FBC2C4;
+  }
+}

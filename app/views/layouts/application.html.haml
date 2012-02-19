@@ -6,6 +6,9 @@
   = stylesheet_link_tag    "application", media: "all"
   = csrf_meta_tags
 %body
+  - flash.each do |key, value|
+    = content_tag :div, class: ['flash', key.to_s].join(' ') do
+      = value
   = yield
   :javascript
     var _gaq = _gaq || [];

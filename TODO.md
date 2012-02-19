@@ -1,8 +1,8 @@
 Needed Before Public Beta
 -------------------------
 
-* Track IP addresses when entries are created
-* Only allow 10 entry creations per IP address per hour
+* (DONE) Track IP addresses when entries are created
+* (DONE) Only allow 10 entry creations per IP address per hour
 * Disallow overly long text in text fields
 * Make current rating, highest rank, and resilience un-editable in the join list confirm dialog
 * Dissallow duplicate entries, and have duplicate entry requests bump the original entry.

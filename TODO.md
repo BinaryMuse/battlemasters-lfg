@@ -1,4 +1,4 @@
-------------Needed Before Public Beta-----------
+*------------Needed Before Public Beta-----------
 * Track IP addresses when entries are created
 * Only allow 10 entry creations per IP address per hour
 * Disallow overly long text in text fields

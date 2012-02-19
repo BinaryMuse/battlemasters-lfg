@@ -17,9 +17,14 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new params[:listing]
     @listing[:ip_address] = request.remote_ip
-    @listing.save
-    respond_with @listing do |format|
-      format.html { redirect_to listings_path, notice: "You've been added to the list!" }
+    if @listing.save
+      respond_with @listing do |format|
+        format.html { redirect_to listings_path, notice: "You've been added to the list!" }
+      end
+    else
+      respond_with @listing do |format|
+        format.html { redirect_to listings_path, alert: "Porblems!" }
+      end
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219062334) do
+ActiveRecord::Schema.define(:version => 20120220065600) do
 
   create_table "listings", :force => true do |t|
     t.string   "faction"
@@ -32,5 +32,16 @@ ActiveRecord::Schema.define(:version => 20120219062334) do
     t.integer  "gender",          :default => 0
     t.string   "ip_address"
   end
+
+  create_table "servers", :force => true do |t|
+    t.string   "kind"
+    t.string   "name"
+    t.string   "slug"
+    t.string   "battlegroup"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "servers", ["battlegroup"], :name => "index_servers_on_battlegroup"
 
 end

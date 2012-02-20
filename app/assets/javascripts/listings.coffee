@@ -5,13 +5,6 @@ capitalize = (str) ->
 
 
 jQuery ->
-  $(".class").each (idx, el) ->
-    realm = $(el).text()
-    bg    = _.find wow.servers, (obj) ->
-      obj.name == realm
-    $(el).attr('data-tooltip', bg.battlegroup)
-  $(document).trigger('recalcTooltip')
-
   class app.Listing extends Backbone.Model
 
   class app.Lookup extends Backbone.Model

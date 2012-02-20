@@ -9,6 +9,7 @@ class Listing < ActiveRecord::Base
   validates_presence_of  :character
 
   before_validation :set_faction_by_race
+  before_save :set_battlegroup_by_realm
 
   def self.active
     where("created_at > ?", 1.hour.ago).order("created_at DESC")
@@ -25,5 +26,12 @@ private
 
   def set_faction_by_race
     self.faction = Wow.faction_by_race(race) unless race.blank?
+  end
+
+  def set_battlegroup_by_realm
+    server = Server.where(name: realm).first
+    if server
+      self.battlegroup = server.battlegroup
+    end
   end
 end

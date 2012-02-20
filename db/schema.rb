@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220065600) do
+ActiveRecord::Schema.define(:version => 20120220072014) do
 
   create_table "listings", :force => true do |t|
     t.string   "faction"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120220065600) do
     t.datetime "updated_at",                     :null => false
     t.integer  "gender",          :default => 0
     t.string   "ip_address"
+    t.string   "battlegroup"
   end
 
   create_table "servers", :force => true do |t|

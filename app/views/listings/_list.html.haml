@@ -34,7 +34,7 @@
           = image_tag "blizzard/class_#{listing.character_class}.jpg", class: 'icon'
           %a{class: Wow::CLASSES[listing.character_class], href: listing.character_url, target: "_blank"}= listing.character
         %td
-          %span.class= listing.realm
+          %span{'data-tooltip' => listing.battlegroup}= listing.realm
         %td
           = image_tag_for_spec listing.character_class, listing.main_spec, 'data-tooltip' => listing.main_spec
         %td

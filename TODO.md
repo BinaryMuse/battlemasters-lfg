@@ -8,6 +8,9 @@ Needed Before Public Beta
 * Dissallow duplicate entries, and have duplicate entry requests bump the original entry.
 * (DONE) Gracefully handle typos
 * (DONE) Limit entries to level 85 characters
+* Allow sorting by various columns and have columns like "rank" sort intelligently
+* Allow filtering by various options
+* Allow paging
 
 Polish
 ------

@@ -17,7 +17,7 @@ jQuery ->
       null
 
     lookup: =>
-      url = "http://us.battle.net/api/wow/character/#{@get('realm')}/#{@get('character')}?fields=talents,stats,pvp&jsonp=?"
+      url = "http://us.battle.net/api/wow/character/#{@get('realm')}/#{@get('character')}?fields=talents,stats,pvp,achievements&jsonp=?"
       $.jsonp
         context: this
         cache: false
@@ -105,6 +105,13 @@ jQuery ->
       form.find("#listing_resilience").val(data.stats.resil)
       form.find("#display_rating").text(data.pvp.ratedBattlegrounds.personalRating)
       form.find("#display_resilience").text(data.stats.resil)
+      console.log '1'
+      rank = @calculateRank(data)
+      console.log '2'
+      form.find("#listing_rank").val(rank)
+      console.log '3'
+      form.find("#display_rank").text(rank)
+      console.log '4'
 
     filterSpec: (form, klass) =>
       selects = $("#listing_main_spec, #listing_off_spec")
@@ -112,6 +119,29 @@ jQuery ->
       for spec, icon of wow.specs[klass]
         option = $("<option>").val(spec).text(spec)
         selects.append option
+
+    calculateRank: (data) ->
+      highestRankIndex = null
+      highestRankString = ""
+
+      console.log data
+      for achId, index in wow.alliance_titles_progression
+        console.log achId
+        if _.include(data.achievements.achievementsCompleted, achId)
+          console.log 'yarp'
+          if highestRankIndex == null || index > highestRankIndex
+            highestRankIndex = index
+            highestRankString = wow.alliance_titles[achId]
+
+      for achId, index in wow.horde_titles_progression
+        console.log achId
+        if _.include(data.achievements.achievementsCompleted, achId)
+          console.log 'yarp2'
+          if highestRankIndex == null || index > highestRankIndex
+            highestRankIndex = index
+            highestRankString = wow.horde_titles[achId]
+
+      return highestRankString
 
     disableStep1: =>
       @$('#step_1 input').attr('disabled', true)

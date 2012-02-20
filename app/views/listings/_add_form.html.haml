@@ -3,9 +3,9 @@
 #add_form
   = form_for :step_1, html: { id: "step_1", style: style } do |f|
     .section
-      = f.label :realm
+      = f.label :realm, "Realm:"
       = f.text_field :realm
-      = f.label :character
+      = f.label :character, "Name:"
       = f.text_field :character
     .section#step_1_button
       = f.submit "Add My Character"
@@ -16,31 +16,32 @@
         = f.hidden_field :character
         = f.hidden_field :irc_name
         = f.hidden_field :gender
-        = f.label :race
+        = f.label :race, "Race:"
         -# = f.select :race, Wow::RACES.invert.map { |k,v| [k.capitalize, v] }
         = f.hidden_field :race
         %span#display_race
-        = f.label :character_class, "Class"
+        = f.label :character_class, "Class:"
         -# = f.select :character_class, Wow::CLASSES.invert.map { |k,v| [k.capitalize, v] }
         = f.hidden_field :character_class
         %span#display_character_class
-        = f.label :main_spec, "Main Spec"
+        = f.label :main_spec, "Main Spec:"
         = f.select :main_spec, options_for_spec_select
-        = f.label :off_spec, "Off Spec"
+        = f.label :off_spec, "Off Spec:"
         = f.select :off_spec, options_for_spec_select
       .section
-        = f.label :rating, "Current Rating"
+        = f.label :rating, "Current Rating:"
         = f.hidden_field :rating
         %span#display_rating
-        = f.label :rank, "Highest Rank"
-        = f.text_field :rank, size: 20
-        = f.label :resilience
+        = f.label :rank, "Highest Rank:"
+        = f.hidden_field :rank
+        %span#display_rank
+        = f.label :resilience, "Resilience:"
         = f.hidden_field :resilience
         %span#display_resilience
       .section
-        = f.label :notes, "(Optional) Notes"
+        = f.label :notes, "(Optional) Notes:"
         = f.text_field :notes, size: 50
-        = f.label :irc_name, "(Optional) IRC Name"
+        = f.label :irc_name, "(Optional) IRC Name:"
         = f.text_field :irc_name
       .section
         = f.submit "Add Me to the List!"

@@ -97,4 +97,44 @@ module Wow
       "Feral Combat" => "ability_racial_bearform"
     }
   }
+
+  HORDE_TITLES = {
+    5345 => "Scout",
+    5346 => "Grunt",
+    5347 => "Sergeant",
+    5348 => "Senior Sergeant",
+    5349 => "First Sergeant",
+    5350 => "Stone Guard",
+    5351 => "Blood Guard",
+    5352 => "Legionnaire",
+    5338 => "Centurion",
+    5353 => "Champion",
+    5354 => "Lieutenant General",
+    5355 => "General",
+    5342 => "Warlord",
+    5356 => "High Warlord"
+  }
+
+  # Note: hashes only ordered in 1.9
+  HORDE_TITLES_PROGRESSION = HORDE_TITLES.keys
+
+  ALLIANCE_TITLES = {
+    5330 => "Private",
+    5331 => "Corporal",
+    5332 => "Sergeant",
+    5333 => "Master Sergeant",
+    5334 => "Sergeant Major",
+    5335 => "Knight",
+    5336 => "Knight-Lieutenant",
+    5337 => "Knight-Captain",
+    5359 => "Knight-Champion",
+    5339 => "Lieutenant Commander",
+    5340 => "Commander",
+    5341 => "Marshal",
+    5357 => "Field Marshal",
+    5343 => "Grand Marshal"
+  }
+
+  # Note: hashes only ordered in 1.9
+  ALLIANCE_TITLES_PROGRESSION = ALLIANCE_TITLES.keys
 end

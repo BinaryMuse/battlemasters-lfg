@@ -84,6 +84,11 @@ jQuery ->
       @enableStep1()
 
     lookupSuccess: (data) =>
+      if data.level < 85
+        alert "You must be level 85 to join the list"
+        @enableStep1()
+        return
+
       @populateAddForm(data)
       @showNewListing()
       @hideStep1()

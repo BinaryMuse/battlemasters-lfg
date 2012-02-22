@@ -1,0 +1,60 @@
+<script type="text/javascript">
+  window.preloadListings = <%= raw @listings.to_json %>
+</script>
+
+<div class="container">
+  <%= image_tag 'buttons/join.gif', 'data-rollover' => image_path('buttons/join_over.gif'), class: 'button hidden', id: 'add_button' %>
+
+  <form id="add_step_1" class="-hidden">
+    <div class="section">
+      <label for="realm">Realm:</label>
+      <input type="text" name="realm" id="listing_realm" size="30" />
+      <label for="name">Name:</label>
+      <input type="text" id="listing_name" size="30" />
+    </div>
+    <div class="section">
+      <input type="submit" value="Add My Character" />
+    </div>
+  </form>
+
+  <table id="listing_table" class="hidden">
+    <thead>
+      <tr class="header">
+        <th></th>
+        <th>Character</th>
+        <th>Realm</th>
+        <th><span data-tooltip="Main Spec">MS</span></th>
+        <th><span data-tooltip="Off Spec">OS</span></th>
+        <th>Current<br />Rating</th>
+        <th>Highest<br />Rank</th>
+        <th><span data-tooltip="Total Resilience">Resil</span></th>
+        <th><span data-tooltip="Average Item Level">iLvl</span></th>
+        <th>IRC Name</th>
+        <th><span data-tooltip="Time in List">Time</td></th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="empty hidden">
+        <td colspan="12">Nobody here yet!</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/html" id="listing_row">
+  <td><img src="{{ faction_icon }}" class="icon" /></td>
+  <td><img src="{{ race_icon }}" class="icon" />
+      <img src="{{ class_icon }}" class="icon">
+      <a href="{{ bnet_url }}" class="{{ class_name }}" target="_blank">{{ character }}</a></td>
+  <td><span data-tooltip="{{ battlegroup }}">{{ realm }}</span></td>
+  <td><img src="{{ main_spec_icon }}" data-tooltip="{{ main_spec }}" /></td>
+  <td><img src="{{ off_spec_icon }}" data-tooltip="{{ off_spec }}" /></td>
+  <td>{{ rating }}</td>
+  <td>{{ rank }}</td>
+  <td>{{ resilience }}</td>
+  <td>{{ item_level }}</td>
+  <td>{{ irc_name }}</td>
+  <td>{{ time_in_list}} </td>
+  <td></td>
+</script>

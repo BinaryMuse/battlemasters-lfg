@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
   before_filter :limit_creations_by_ip, only: [:create]
 
   def index
-    @listings = Listing.active
+    @listings = Listing.active.map { |l| present(l) }
     @listing  = Listing.new
     respond_with @listings
   end

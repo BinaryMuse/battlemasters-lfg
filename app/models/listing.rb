@@ -15,13 +15,6 @@ class Listing < ActiveRecord::Base
     where("created_at > ?", 1.hour.ago).order("created_at DESC")
   end
 
-  # TODO: Move to presenter
-  def character_url
-    realm = CGI.escape self.realm
-    character = CGI.escape self.character
-    "http://us.battle.net/wow/en/character/#{realm}/#{character}/advanced"
-  end
-
 private
 
   def set_faction_by_race

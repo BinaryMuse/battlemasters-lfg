@@ -10,3 +10,6 @@ class app.ListingView extends Backbone.View
   render: =>
     $(@el).html @template(@model.toJSON())
     this
+
+  remove: =>
+    $(@el).remove()

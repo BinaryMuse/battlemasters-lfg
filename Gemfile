@@ -21,6 +21,7 @@ end
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'haml'
+gem 'stitch_rails'
 
 gem 'capistrano'
 gem 'whenever', require: false

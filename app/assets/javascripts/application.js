@@ -16,8 +16,8 @@
 //= require jquery.jsonp
 //= require underscore
 //= require backbone
-//= require_tree ./backbone/models
-//= require_tree ./backbone/collections
-//= require_tree ./backbone/views
-//= require_tree ./backbone/routers
+//= require stitch_rails
 //= require_tree .
+//= require_this
+
+require('site');

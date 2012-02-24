@@ -1,4 +1,7 @@
+LfgApp = require 'lfg_app'
+
 jQuery ->
+  alert 'testing'
   hideFlash = ->
     $(".flash").slideUp()
   setTimeout hideFlash, 5000
@@ -28,3 +31,9 @@ jQuery ->
     mouseout = ->
       $(this).attr 'src', $(this).data('orig-src')
     $(el).hover mouseover, mouseout
+
+  _.templateSettings =
+    interpolate: /\{\{(.+?)\}\}/g
+
+  window.application = new LfgApp.LfgApp
+  window.application.start()

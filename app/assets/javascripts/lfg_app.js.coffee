@@ -1,29 +1,7 @@
-_.templateSettings =
-  interpolate: /\{\{(.+?)\}\}/g
+Clock = require 'clock'
+EventBus = require 'event_bus'
 
-class Clock
-  constructor: (@serverTime) ->
-    @jsTime = new Date().getTime() / 1000
-    @secondsAhead = @jsTime - @serverTime
-
-  getServerTime: (@clientTime) =>
-    new Date(@clientTime.getTime() - @secondsAhead)
-
-class EventBus
-  constructor: ->
-    @events = {}
-    _.extend(@events, Backbone.Events)
-
-  on: (args...) =>
-    @events.on args...
-
-  off: (args...) =>
-    @events.off args...
-
-  trigger: (args...) =>
-    @events.trigger args...
-
-class Application
+class exports.LfgApp
   constructor: ->
     @bus        = new EventBus
     @clock      = new Clock(window.rubyTime)
@@ -63,7 +41,3 @@ class Application
 
   updateListTime: =>
     @listings.updateListTime()
-
-jQuery ->
-  window.application = new Application
-  window.application.start()

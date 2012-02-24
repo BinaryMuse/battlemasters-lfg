@@ -61,5 +61,7 @@ module Battlemasters
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.stitch.excludes = %w(application spec jasminerice)
   end
 end

@@ -1,5 +1,6 @@
 <script type="text/javascript">
   window.preloadListings = <%= raw @listings.to_json %>
+  window.rubyTime = <%= Time.new.to_i %>
 </script>
 
 <div class="container">
@@ -55,6 +56,6 @@
   <td>{{ resilience }}</td>
   <td>{{ item_level }}</td>
   <td>{{ irc_name }}</td>
-  <td>{{ time_in_list}} </td>
+  <td class='time'>{{ time_in_list}} min</td>
   <td></td>
 </script>

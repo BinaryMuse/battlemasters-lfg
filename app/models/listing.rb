@@ -12,7 +12,7 @@ class Listing < ActiveRecord::Base
   before_save :set_battlegroup_by_realm
 
   def self.active
-    where("created_at > ?", 1.hour.ago).order("created_at DESC")
+    where("updated_at > ?", 1.hour.ago).order("updated_at DESC")
   end
 
 private

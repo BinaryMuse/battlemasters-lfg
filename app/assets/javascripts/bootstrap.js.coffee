@@ -1,6 +1,14 @@
 _.templateSettings =
   interpolate: /\{\{(.+?)\}\}/g
 
+class Clock
+  constructor: (@serverTime) ->
+    @jsTime = new Date().getTime() / 1000
+    @secondsAhead = @jsTime - @serverTime
+
+  getServerTime: (@clientTime) =>
+    new Date(@clientTime.getTime() - @secondsAhead)
+
 class EventBus
   constructor: ->
     @events = {}
@@ -18,6 +26,7 @@ class EventBus
 class Application
   constructor: ->
     @bus        = new EventBus
+    @clock      = new Clock(window.rubyTime)
 
     @mainRouter = new app.MainRouter(app: this)
     @listings   = new app.Listings
@@ -28,6 +37,7 @@ class Application
     @listings.reset window.preloadListings
     Backbone.history.start(silent: false)
     setInterval @updateListings, 10 * 1000
+    setInterval @updateListTime, 10 * 1000
 
   updateListings: =>
     listings = new app.Listings
@@ -50,6 +60,9 @@ class Application
       do (model) =>
         unless _.include existing_ids, model.get('id')
           @listings.add model
+
+  updateListTime: =>
+    @listings.updateListTime()
 
 jQuery ->
   window.application = new Application

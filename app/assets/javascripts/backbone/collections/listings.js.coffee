@@ -13,3 +13,8 @@ class app.Listings extends Backbone.Collection
 
     for model in modelsToRemove
       @remove model
+
+  sortByColumn: (col) =>
+    @comparator = (model) =>
+      model.get(col)
+    @sort()

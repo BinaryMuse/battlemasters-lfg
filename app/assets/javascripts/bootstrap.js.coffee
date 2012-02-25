@@ -36,8 +36,8 @@ class Application
   start: =>
     @listings.reset window.preloadListings
     Backbone.history.start(silent: false)
-    setInterval @updateListings, 10 * 1000
-    setInterval @updateListTime, 10 * 1000
+    setInterval @updateListings, 30 * 1000
+    setInterval @updateListTime, 15 * 1000
 
   updateListings: =>
     listings = new app.Listings

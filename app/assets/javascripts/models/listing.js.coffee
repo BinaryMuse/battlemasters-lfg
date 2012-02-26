@@ -1,6 +1,4 @@
-window.app ?= {}
-
-class app.Listing extends Backbone.Model
+class Listing extends Backbone.Model
   urlRoot: '/listings'
   defaults:
     time_in_list: ''
@@ -18,3 +16,5 @@ class app.Listing extends Backbone.Model
     value       = diffMinutes
     @set 'time_in_list', value, silent: true
     @trigger 'change:time_in_list', this, value
+
+module.exports = Listing

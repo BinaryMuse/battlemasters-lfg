@@ -1,4 +1,4 @@
-class exports.EventBus
+class EventBus
   constructor: ->
     @events = {}
     _.extend(@events, Backbone.Events)
@@ -11,3 +11,5 @@ class exports.EventBus
 
   trigger: (args...) =>
     @events.trigger args...
+
+module.exports = EventBus

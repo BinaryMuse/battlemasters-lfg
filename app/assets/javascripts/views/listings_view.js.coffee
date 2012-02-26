@@ -1,6 +1,6 @@
-window.app ?= {}
+ListingView = require('views/listing_view')
 
-class app.ListingsView extends Backbone.View
+class ListingsView extends Backbone.View
   el: "#listing_table"
   events:
     'click th': 'sort'
@@ -26,7 +26,7 @@ class app.ListingsView extends Backbone.View
       @$(".empty").hide()
 
   addListing: (model) =>
-    view = new app.ListingView(model: model)
+    view = new ListingView(model: model)
     model.view = view
     @$("tbody").append view.render().el
     @updatePlaceholder()
@@ -41,3 +41,5 @@ class app.ListingsView extends Backbone.View
       target = target.parents('th')
     sortBy = $(target).data('sort')
     @collection.sortByColumn sortBy if sortBy?
+
+module.exports = ListingsView

@@ -1,6 +1,7 @@
-window.app ?= {}
+Listing = require 'models/listing'
+Wow = require 'wow'
 
-class app.ListingFormView extends Backbone.View
+class ListingFormView extends Backbone.View
   el: "#new_listing_form"
   events:
     'submit': 'submit'
@@ -13,10 +14,10 @@ class app.ListingFormView extends Backbone.View
     @$("#listing_realm").val(data.realm)
     @$("#listing_character").val(data.name)
     @$("#listing_race").val(data.race)
-    @$("#display_race").text(@capitalize window.wow.races[data.race])
+    @$("#display_race").text(@capitalize Wow.races[data.race])
     @$("#listing_gender").val(data.gender)
     @$("#listing_character_class").val(data.class)
-    @$("#display_character_class").text(@capitalize window.wow.classes[data.class])
+    @$("#display_character_class").text(@capitalize Wow.classes[data.class])
     @filterSpec(data.class)
     @$("#listing_main_spec").val(data.talents[0].name)
     @$("#listing_off_spec").val(data.talents[1].name)
@@ -31,7 +32,7 @@ class app.ListingFormView extends Backbone.View
   filterSpec: (klass) =>
     selects = @$("#listing_main_spec, #listing_off_spec")
     selects.empty()
-    for spec, icon of wow.specs[klass]
+    for spec, icon of Wow.specs[klass]
       option = $("<option>").val(spec).text(spec)
       selects.append option
 
@@ -44,7 +45,7 @@ class app.ListingFormView extends Backbone.View
     ]
     for field in fields
       creation[field] = @$("#listing_#{field}").val()
-    newListing = new app.Listing
+    newListing = new Listing
     newListing.save creation, {
       success: (model, response) =>
         model.updateListTime()
@@ -66,3 +67,5 @@ class app.ListingFormView extends Backbone.View
 
   capitalize: (str) ->
     (str.split(' ').map (word) -> word[0].toUpperCase() + word[1..-1].toLowerCase()).join(' ')
+
+module.exports = ListingFormView

@@ -1,14 +1,17 @@
 Clock = require 'clock'
 EventBus = require 'event_bus'
+MainRouter = require 'routers/main_router'
+Listings = require 'collections/listings'
+MainView = require 'views/main_view'
 
-class exports.LfgApp
+class LfgApp
   constructor: ->
     @bus        = new EventBus
     @clock      = new Clock(window.rubyTime)
 
-    @mainRouter = new app.MainRouter(app: this)
-    @listings   = new app.Listings
-    @mainView   = new app.MainView(app: this, collection: @listings)
+    @mainRouter = new MainRouter(app: this)
+    @listings   = new Listings
+    @mainView   = new MainView(app: this, collection: @listings)
     @firstView = false
 
   start: =>
@@ -18,7 +21,7 @@ class exports.LfgApp
     setInterval @updateListTime, 15 * 1000
 
   updateListings: =>
-    listings = new app.Listings
+    listings = new Listings
     listings.fetch
       success: @processListings
 
@@ -41,3 +44,5 @@ class exports.LfgApp
 
   updateListTime: =>
     @listings.updateListTime()
+
+module.exports = LfgApp

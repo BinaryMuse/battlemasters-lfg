@@ -1,6 +1,4 @@
-window.app ?= {}
-
-class app.CharacterLookupView extends Backbone.View
+class CharacterLookupView extends Backbone.View
   el: "#lookup_form"
   events:
     'submit': 'doLookup'
@@ -51,3 +49,5 @@ class app.CharacterLookupView extends Backbone.View
     @$("input[type='submit']").attr('disabled', false)
     button = @$("input[type='submit']")
     button.val(@origButtonText)
+
+module.exports = CharacterLookupView

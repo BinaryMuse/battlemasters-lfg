@@ -1,6 +1,4 @@
-window.app ?= {}
-
-class app.ListingView extends Backbone.View
+class ListingView extends Backbone.View
   tagName: "tr"
 
   initialize: ->
@@ -17,3 +15,5 @@ class app.ListingView extends Backbone.View
 
   remove: =>
     $(@el).remove()
+
+module.exports = ListingView

@@ -1,6 +1,6 @@
-window.app ?= {}
+Wow = require 'wow'
 
-class app.Lookup extends Backbone.Model
+class Lookup extends Backbone.Model
   validate: (attrs) ->
     unless attrs.realm? && attrs.realm != ""
       return "Need a valid realm"
@@ -23,16 +23,18 @@ class app.Lookup extends Backbone.Model
     highestRankIndex = null
     highestRankString = ""
 
-    for achId, index in wow.alliance_titles_progression
+    for achId, index in Wow.alliance_titles_progression
       if _.include(data.achievements.achievementsCompleted, achId)
         if highestRankIndex == null || index > highestRankIndex
           highestRankIndex = index
-          highestRankString = wow.alliance_titles[achId]
+          highestRankString = Wow.alliance_titles[achId]
 
-    for achId, index in wow.horde_titles_progression
+    for achId, index in Wow.horde_titles_progression
       if _.include(data.achievements.achievementsCompleted, achId)
         if highestRankIndex == null || index > highestRankIndex
           highestRankIndex = index
-          highestRankString = wow.horde_titles[achId]
+          highestRankString = Wow.horde_titles[achId]
 
     return highestRankString
+
+module.exports = Lookup

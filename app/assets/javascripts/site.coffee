@@ -1,7 +1,6 @@
 LfgApp = require 'lfg_app'
 
 jQuery ->
-  alert 'testing'
   hideFlash = ->
     $(".flash").slideUp()
   setTimeout hideFlash, 5000
@@ -35,5 +34,5 @@ jQuery ->
   _.templateSettings =
     interpolate: /\{\{(.+?)\}\}/g
 
-  window.application = new LfgApp.LfgApp
+  window.application = new LfgApp
   window.application.start()

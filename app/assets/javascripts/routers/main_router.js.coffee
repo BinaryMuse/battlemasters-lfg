@@ -1,6 +1,4 @@
-window.app ?= {}
-
-class app.MainRouter extends Backbone.Router
+class MainRouter extends Backbone.Router
   initialize: (options) ->
     @app = options.app
 
@@ -9,3 +7,5 @@ class app.MainRouter extends Backbone.Router
 
   main: =>
     @app.bus.trigger 'main'
+
+module.exports = MainRouter

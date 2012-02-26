@@ -1,14 +1,18 @@
-exports.races = <%= Wow::RACES.to_json %>
+wow = {}
 
-exports.alliance_races = <%= Wow::ALLIANCE_RACES.to_json %>
-exports.horde_races = <%= Wow::HORDE_RACES.to_json %>
+wow.races = <%= Wow::RACES.to_json %>
 
-exports.classes = <%= Wow::CLASSES.to_json %>
+wow.alliance_races = <%= Wow::ALLIANCE_RACES.to_json %>
+wow.horde_races = <%= Wow::HORDE_RACES.to_json %>
 
-exports.specs = <%= Wow::SPECS.to_json %>
+wow.classes = <%= Wow::CLASSES.to_json %>
 
-exports.horde_titles = <%= Wow::HORDE_TITLES.to_json %>
-exports.horde_titles_progression = <%= Wow::HORDE_TITLES_PROGRESSION.to_json %>
+wow.specs = <%= Wow::SPECS.to_json %>
 
-exports.alliance_titles = <%= Wow::ALLIANCE_TITLES.to_json %>
-exports.alliance_titles_progression = <%= Wow::ALLIANCE_TITLES_PROGRESSION.to_json %>
+wow.horde_titles = <%= Wow::HORDE_TITLES.to_json %>
+wow.horde_titles_progression = <%= Wow::HORDE_TITLES_PROGRESSION.to_json %>
+
+wow.alliance_titles = <%= Wow::ALLIANCE_TITLES.to_json %>
+wow.alliance_titles_progression = <%= Wow::ALLIANCE_TITLES_PROGRESSION.to_json %>
+
+module.exports = wow

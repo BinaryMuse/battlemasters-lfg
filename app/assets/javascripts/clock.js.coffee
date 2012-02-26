@@ -1,7 +1,9 @@
-class exports.Clock
+class Clock
   constructor: (@serverTime) ->
     @jsTime = new Date().getTime() / 1000
     @secondsAhead = @jsTime - @serverTime
 
   getServerTime: (@clientTime) =>
     new Date(@clientTime.getTime() - @secondsAhead)
+
+module.exports = Clock

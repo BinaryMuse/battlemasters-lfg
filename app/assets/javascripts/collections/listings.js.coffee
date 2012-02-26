@@ -1,8 +1,8 @@
-window.app ?= {}
+Listing = require 'models/listing'
 
-class app.Listings extends Backbone.Collection
+class Listings extends Backbone.Collection
   url: '/listings'
-  model: app.Listing
+  model: Listing
 
   updateListTime: =>
     modelsToRemove = []
@@ -18,3 +18,5 @@ class app.Listings extends Backbone.Collection
     @comparator = (model) =>
       model.get(col)
     @sort()
+
+module.exports = Listings

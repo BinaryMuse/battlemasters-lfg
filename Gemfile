@@ -21,7 +21,7 @@ end
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'haml'
-gem 'stitch_rails', git: "https://BinaryMuse@github.com/BinaryMuse/stitch_rails.git", ref: "6b7b2b16"
+gem 'stitch_rails', git: "git://github.com/BinaryMuse/stitch_rails.git", ref: "6b7b2b16"
 
 gem 'capistrano'
 gem 'whenever', require: false

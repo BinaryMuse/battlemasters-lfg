@@ -1,5 +1,5 @@
 GIT
-  remote: https://BinaryMuse@github.com/BinaryMuse/stitch_rails.git
+  remote: git://github.com/BinaryMuse/stitch_rails.git
   revision: 6b7b2b16b26ed12607e985868b6553813046885e
   ref: 6b7b2b16
   specs:

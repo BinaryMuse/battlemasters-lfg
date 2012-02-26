@@ -49,7 +49,6 @@ class SortedFilteredCollection extends Backbone.Collection
         model.trigger 'filter:hide'
 
   refilter: =>
-    console.log 'refiltering'
     @filterBy()
 
 module.exports = SortedFilteredCollection

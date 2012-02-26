@@ -4,6 +4,8 @@ class ListingView extends Backbone.View
   initialize: ->
     @template = _.template $("#listing_row").html()
     @model.on 'change:time_in_list', @changeTimeInList
+    @model.on 'filter:show', @show
+    @model.on 'filter:hide', @hide
     @model.on 'change', @render
 
   render: =>
@@ -12,6 +14,12 @@ class ListingView extends Backbone.View
 
   changeTimeInList: (model, value) =>
     @$(".time").text(value + " min")
+
+  show: =>
+    $(@el).show()
+
+  hide: =>
+    $(@el).hide()
 
   remove: =>
     $(@el).remove()

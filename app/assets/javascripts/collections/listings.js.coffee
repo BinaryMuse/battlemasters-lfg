@@ -1,6 +1,7 @@
 Listing = require 'models/listing'
+SortedFilteredCollection = require 'backbone/sorted_filtered_collection'
 
-class Listings extends Backbone.Collection
+class Listings extends SortedFilteredCollection
   url: '/listings'
   model: Listing
 
@@ -13,10 +14,5 @@ class Listings extends Backbone.Collection
 
     for model in modelsToRemove
       @remove model
-
-  sortByColumn: (col) =>
-    @comparator = (model) =>
-      model.get(col)
-    @sort()
 
 module.exports = Listings

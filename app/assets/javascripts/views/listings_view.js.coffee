@@ -4,7 +4,7 @@ class ListingsView extends Backbone.View
   el: "#listing_table"
   events:
     'click th': 'sort'
-    'click th span': 'sort'
+    'click th': 'sort'
 
   initialize: ->
     @app = @options.app

@@ -1,6 +1,7 @@
 window.app ?= {}
 
 class app.Listing extends Backbone.Model
+  urlRoot: '/listings'
   defaults:
     time_in_list: ''
 

@@ -1,12 +1,15 @@
+<% form_class = @listings.any? ? 'hidden' : '' %>
+<% button_class = @listings.any? ? '' : 'hidden' %>
+
 <script type="text/javascript">
   window.preloadListings = <%= raw @listings.to_json %>
   window.rubyTime = <%= Time.new.to_i %>
 </script>
 
 <div class="container">
-  <%= image_tag 'buttons/join.gif', 'data-rollover' => image_path('buttons/join_over.gif'), class: 'button hidden', id: 'add_button' %>
+  <%= image_tag 'buttons/join.gif', 'data-rollover' => image_path('buttons/join_over.gif'), class: "button #{button_class}", id: 'add_button' %>
 
-  <form id="add_step_1" class="-hidden">
+  <form id="lookup_form" class="<%= form_class %>">
     <div class="section">
       <label for="realm">Realm:</label>
       <input type="text" name="realm" id="listing_realm" size="30" />
@@ -18,21 +21,59 @@
     </div>
   </form>
 
+  <%= form_for :listing, html: { class: 'hidden', id: 'new_listing_form' } do |f| %>
+    <div class="section">
+      <%= f.hidden_field :realm %>
+      <%= f.hidden_field :character %>
+      <%= f.hidden_field :gender %>
+      <%= f.label :race, "Race:" %>
+      <%= f.hidden_field :race %>
+      <span id="display_race"></span>
+      <%= f.label :character_class, "Class:" %>
+      <%= f.hidden_field :character_class %>
+      <span id="display_character_class"></span>
+      <%= f.label :main_spec, "Main Spec:" %>
+      <%= f.select :main_spec, options_for_spec_select %>
+      <%= f.label :off_spec, "Off Spec:" %>
+      <%= f.select :off_spec, options_for_spec_select %>
+    </div>
+    <div class="section">
+      <%= f.label :rating, "Current Rating:" %>
+      <%= f.hidden_field :rating %>
+      <span id="display_rating"></span>
+      <%= f.label :rank, "Highest Rank:" %>
+      <%= f.hidden_field :rank %>
+      <span id="display_rank"></span>
+      <%= f.label :resilience, "Resilience:" %>
+      <%= f.hidden_field :resilience %>
+      <span id="display_resilience"></span>
+    </div>
+    <div class="section">
+      <%= f.label :notes, "(Optional) Notes:" %>
+      <%= f.text_field :notes, size: 50 %>
+      <%= f.label :irc_name, "(Optional) IRC Name:" %>
+      <%= f.text_field :irc_name %>
+    </div>
+    <div class="section">
+      <%= f.submit "Add Me to the List!" %>
+    </div>
+  <% end %>
+
   <table id="listing_table" class="hidden">
     <thead>
       <tr class="header">
-        <th></th>
-        <th>Character</th>
-        <th>Realm</th>
-        <th><span data-tooltip="Main Spec">MS</span></th>
-        <th><span data-tooltip="Off Spec">OS</span></th>
-        <th>Current<br />Rating</th>
-        <th>Highest<br />Rank</th>
-        <th><span data-tooltip="Total Resilience">Resil</span></th>
-        <th><span data-tooltip="Average Item Level">iLvl</span></th>
-        <th>IRC Name</th>
-        <th><span data-tooltip="Time in List">Time</td></th>
-        <th>Notes</th>
+        <th data-sort="faction"></th>
+        <th data-sort="character">Character</th>
+        <th data-sort="realm">Realm</th>
+        <th data-sort="main_spec"><span data-tooltip="Main Spec">MS</span></th>
+        <th data-sort="off_spec"><span data-tooltip="Off Spec">OS</span></th>
+        <th data-sort="rating">Current<br />Rating</th>
+        <th data-sort="rank">Highest<br />Rank</th>
+        <th data-sort="resilience"><span data-tooltip="Total Resilience">Resil</span></th>
+        <th data-sort="item_level"><span data-tooltip="Average Item Level">iLvl</span></th>
+        <th data-sort="irc_name">IRC Name</th>
+        <th data-sort="time_in_list"><span data-tooltip="Time in List">Time</td></th>
+        <th data-sort="notes">Notes</th>
       </tr>
     </thead>
     <tbody>

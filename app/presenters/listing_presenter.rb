@@ -4,25 +4,24 @@ class ListingPresenter
     @model = model
   end
 
-  def faction_icon
+  def faction_sprite
     if @model.faction == "alliance"
-      h.image_path "blizzard/faction_0.jpg"
+      "faction_0"
     else
-      h.image_path "blizzard/faction_1.jpg"
+      "faction_1"
     end
   end
 
-  def race_icon
-    h.image_path "blizzard/race_#{@model.race}_#{@model.gender}.jpg"
+  def race_sprite
+    "race_#{@model.race}_#{@model.gender}"
   end
 
-  def class_icon
-    h.image_path "blizzard/class_#{@model.character_class}.jpg"
+  def class_sprite
+    "class_#{@model.character_class}"
   end
 
-  def spec_icon(spec)
-    image = Wow::SPECS[@model.character_class][spec]
-    h.image_path "blizzard/spell/#{image}.jpg"
+  def spec_sprite(spec)
+    Wow::SPECS[@model.character_class][spec]
   end
 
   def bnet_url
@@ -37,11 +36,11 @@ class ListingPresenter
 
   def as_json(options)
     @model.attributes.merge({
-      faction_icon: self.faction_icon,
-      race_icon: self.race_icon,
-      class_icon: self.class_icon,
-      main_spec_icon: self.spec_icon(@model.main_spec),
-      off_spec_icon: self.spec_icon(@model.off_spec),
+      faction_sprite: self.faction_sprite,
+      race_sprite: self.race_sprite,
+      class_sprite: self.class_sprite,
+      main_spec_sprite: self.spec_sprite(@model.main_spec),
+      off_spec_sprite: self.spec_sprite(@model.off_spec),
       class_name: self.class_name,
       bnet_url: self.bnet_url,
       time_in_list: (Time.now - @model.updated_at).floor

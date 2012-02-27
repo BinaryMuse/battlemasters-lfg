@@ -10,23 +10,13 @@ table {
     padding: 6px 5px;
     text-align: left;
     img {
-      vertical-align: top;
+      vertical-align: bottom;
     }
   }
 
   th {
     padding-left: 14px;
   }
-}
-
-img.icon {
-  background-color: black;
-  border: 1px solid #434445;
-  border-bottom-color: #2f3032;
-  border-top-color: #b1b2b4;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
 }
 
 form {

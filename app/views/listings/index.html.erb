@@ -97,13 +97,16 @@
 </div>
 
 <script type="text/html" id="listing_row">
-  <td><img src="{{ faction_icon }}" class="icon" width="18" height="18" /></td>
-  <td><img src="{{ race_icon }}" class="icon" width="18" height="18" />
-      <img src="{{ class_icon }}" class="icon" width="18" height="18" />
-      <a href="{{ bnet_url }}" class="{{ class_name }}" target="_blank">{{ character }}</a></td>
+  <td>
+    <div class="sprites {{ faction_sprite }}" />
+  </td>
+  <td>
+    <div class="sprites {{ race_sprite }}" />
+    <div class="sprites {{ class_sprite }}" />
+    <a href="{{ bnet_url }}" class="{{ class_name }}" target="_blank">{{ character }}</a></td>
   <td><span data-tooltip="{{ battlegroup }}">{{ realm }}</span></td>
-  <td><img src="{{ main_spec_icon }}" data-tooltip="{{ main_spec }}" width="18" height="18" /></td>
-  <td><img src="{{ off_spec_icon }}" data-tooltip="{{ off_spec }}" width="18" height="18" /></td>
+  <td><div class="sprites {{ main_spec_sprite }}" /></td>
+  <td><div class="sprites {{ off_spec_sprite }}" /></td>
   <td>{{ rating }}</td>
   <td>{{ rank }}</td>
   <td>{{ resilience }}</td>

@@ -16,9 +16,12 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.active.find_or_initialize_by_realm_and_character(params[:listing][:realm], params[:listing][:character])
-    @listing.attributes = params[:listing]
+    unless @listing.persisted?
+      # Can't change values on a "bump"
+      @listing.attributes = params[:listing]
+      @listing[:ip_address] = request.remote_ip
+    end
     @listing.updated_at = Time.now
-    @listing[:ip_address] = request.remote_ip
     if @listing.save
       respond_with @listing do |format|
         format.html { redirect_to listings_path, notice: "You've been added to the list!" }

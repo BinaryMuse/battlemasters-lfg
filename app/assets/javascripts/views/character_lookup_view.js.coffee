@@ -23,6 +23,8 @@ class CharacterLookupView extends Backbone.View
       alert "Couldn't fetch your character from the Battle.net API. The API may not be working at this time. Please try again in a few minutes."
     else if status == "error"
       alert "Couldn't find your character. Are you sure you spelled your realm and character name correctly?"
+    else if status == 'lowlevel'
+      alert "You can only add level 85 characters to the LFG list."
     else
       alert "There was an unknown problem fetching your character. Please try again in a few moments."
 

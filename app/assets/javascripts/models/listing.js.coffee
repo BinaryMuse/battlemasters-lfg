@@ -1,20 +1,11 @@
 class Listing extends Backbone.Model
   urlRoot: '/listings'
   defaults:
-    time_in_list: ''
+    time_in_list: 0
 
-  initialize: ->
-    @updateListTime()
-
-  updateListTime: =>
-    clientTime  = new Date()
-    serverTime  = window.application.clock.getServerTime(clientTime)
-    started     = new Date(@get('updated_at'))
-    diff        = serverTime.getTime() - started.getTime()
-    diffSeconds = diff / 1000
-    diffMinutes = Math.floor diffSeconds / 60
-    value       = diffMinutes
-    @set 'time_in_list', value, silent: true
-    @trigger 'change:time_in_list', this, value
+  incrementTimeInList: =>
+    time = @get('time_in_list') + 1
+    @set 'time_in_list', time, silent: true
+    @trigger 'change:time_in_list', this, time
 
 module.exports = Listing

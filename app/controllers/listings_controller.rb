@@ -15,7 +15,9 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new params[:listing]
+    @listing = Listing.active.find_or_initialize_by_realm_and_character(params[:listing][:realm], params[:listing][:character])
+    @listing.attributes = params[:listing]
+    @listing.updated_at = Time.now
     @listing[:ip_address] = request.remote_ip
     if @listing.save
       respond_with @listing do |format|

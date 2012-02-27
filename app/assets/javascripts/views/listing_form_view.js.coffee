@@ -48,8 +48,11 @@ class ListingFormView extends Backbone.View
     newListing = new Listing
     newListing.save creation, {
       success: (model, response) =>
-        model.updateListTime()
-        @collection.add model
+        if @collection.get(model.get('id'))?
+          oldModel = @collection.get(model.get('id'))
+          oldModel.set(model.attributes)
+        else
+          @collection.add model
         @collection.sort() if @collection.comparator?
         @hide()
       error: (model, response) =>

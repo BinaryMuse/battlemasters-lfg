@@ -8,7 +8,7 @@ class Listings extends SortedFilteredCollection
   updateListTime: =>
     modelsToRemove = []
     for model in @models
-      model.updateListTime()
+      model.incrementTimeInList()
       if model.get('time_in_list') > 60
         modelsToRemove.push model
 

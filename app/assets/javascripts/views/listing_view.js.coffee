@@ -9,11 +9,15 @@ class ListingView extends Backbone.View
     @model.on 'change', @render
 
   render: =>
-    $(@el).html @template(@model.toJSON())
+    json = @model.toJSON()
+    json.time_in_list = Math.floor(json.time_in_list / 60)
+    $(@el).html @template(json)
     this
 
   changeTimeInList: (model, value) =>
-    @$(".time").text(value + " min")
+    # value is in minutes
+    minutes = Math.floor(value / 60)
+    @$(".time").text(minutes + " min")
 
   show: =>
     $(@el).show()

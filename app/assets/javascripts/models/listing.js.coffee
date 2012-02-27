@@ -3,8 +3,8 @@ class Listing extends Backbone.Model
   defaults:
     time_in_list: 0
 
-  incrementTimeInList: =>
-    time = @get('time_in_list') + 1
+  incrementTimeInList: (seconds) =>
+    time = @get('time_in_list') + seconds
     @set 'time_in_list', time, silent: true
     @trigger 'change:time_in_list', this, time
 

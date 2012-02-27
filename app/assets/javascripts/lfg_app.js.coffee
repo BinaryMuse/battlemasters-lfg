@@ -4,6 +4,8 @@ MainRouter = require 'routers/main_router'
 Listings = require 'collections/listings'
 MainView = require 'views/main_view'
 
+TIME_UPDATE = 10
+
 class LfgApp
   constructor: ->
     @bus        = new EventBus
@@ -18,7 +20,7 @@ class LfgApp
     @listings.reset window.preloadListings
     Backbone.history.start(silent: false)
     setInterval @updateListings, 30 * 1000
-    setInterval @updateListTime, 60 * 1000
+    setInterval @updateListTime, TIME_UPDATE * 1000
 
   updateListings: =>
     listings = new Listings
@@ -43,6 +45,6 @@ class LfgApp
           @listings.add model
 
   updateListTime: =>
-    @listings.updateListTime()
+    @listings.updateListTime(TIME_UPDATE)
 
 module.exports = LfgApp

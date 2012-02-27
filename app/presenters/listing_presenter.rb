@@ -44,7 +44,7 @@ class ListingPresenter
       off_spec_icon: self.spec_icon(@model.off_spec),
       class_name: self.class_name,
       bnet_url: self.bnet_url,
-      time_in_list: ((Time.now - @model.updated_at) / 60).floor
+      time_in_list: (Time.now - @model.updated_at).floor
     }).as_json(options)
   end
 

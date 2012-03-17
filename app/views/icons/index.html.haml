@@ -1,0 +1,6 @@
+- Wow::SPECS.each do |klass, specs|
+  %h3= "Specs for class #{klass} (#{Wow::CLASSES[klass].to_s})"
+  - specs.each do |spec, icon|
+    %p= spec
+    %div{class: "sprites #{icon}"}
+  %hr

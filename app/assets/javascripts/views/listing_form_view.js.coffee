@@ -47,6 +47,7 @@ class ListingFormView extends Backbone.View
       creation[field] = @$("#listing_#{field}").val()
     newListing = new Listing
     newListing.save creation, {
+      wait: true
       success: (model, response) =>
         if @collection.get(model.get('id'))?
           oldModel = @collection.get(model.get('id'))

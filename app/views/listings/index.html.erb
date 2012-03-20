@@ -114,10 +114,14 @@
   <td>{{ rank }}</td>
   <td>{{ resilience }}</td>
   <td>{{ item_level }}</td>
-  <td>{{ irc_name }}</td>
+  {% if (obj.irc_name != obj.truncated_irc_name) { %}
+    <td><span data-tooltip="{{ _.escape(irc_name) }}">{{ _.escape(truncated_irc_name) }}</span></td>
+  {% } else { %}
+    <td>{{ _.escape(irc_name) }}</td>
+  {% } %}
   <td class='time'>{{ time_in_list }} min</td>
   <td>{% if (obj.notes.trim() != "") { %}
-    <img src="<%= image_path('icons/note.png') %>" data-tooltip="{{ notes }}" />
+    <img src="<%= image_path('icons/note.png') %>" data-tooltip="{{ _.escape(notes) }}" />
     {% } %}
   </td>
 </script>

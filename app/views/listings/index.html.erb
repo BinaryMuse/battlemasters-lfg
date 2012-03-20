@@ -116,5 +116,8 @@
   <td>{{ item_level }}</td>
   <td>{{ irc_name }}</td>
   <td class='time'>{{ time_in_list }} min</td>
-  <td></td>
+  <td>{% if (obj.notes.trim() != "") { %}
+    <img src="<%= image_path('icons/note.png') %>" data-tooltip="{{ notes }}" />
+    {% } %}
+  </td>
 </script>

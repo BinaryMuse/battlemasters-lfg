@@ -32,6 +32,7 @@ jQuery ->
 
   _.templateSettings =
     interpolate: /\{\{(.+?)\}\}/g
+    evaluate: /\{%(.+?)%\}/g
 
   window.application = new LfgApp
   window.application.start()

@@ -15,6 +15,7 @@ class Listing extends Backbone.Model
 
   setTruncatedName: (model) =>
     ircName = @get('irc_name')
+    return unless ircName?
     if ircName.length > 13
       name = ircName.substring(0, 12) + "..."
       @set('truncated_irc_name': name, {silent: true})

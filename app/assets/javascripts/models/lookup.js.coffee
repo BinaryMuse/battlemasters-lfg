@@ -8,7 +8,7 @@ class Lookup extends Backbone.Model
       return "Need a valid name"
 
   doLookup: =>
-    url = "http://us.battle.net/api/wow/character/#{@get('realm')}/#{@get('name')}?fields=talents,stats,pvp,achievements&jsonp=?"
+    url = "http://us.battle.net/api/wow/character/#{@get('realm')}/#{@get('name')}?fields=talents,stats,pvp,achievements,items&jsonp=?"
     $.jsonp
       context: this
       cache: false

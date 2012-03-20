@@ -23,8 +23,10 @@ class ListingFormView extends Backbone.View
     @$("#listing_off_spec").val(data.talents[1].name)
     @$("#listing_rating").val(data.pvp.ratedBattlegrounds.personalRating)
     @$("#listing_resilience").val(data.stats.resil)
+    @$("#listing_item_level").val(data.items.averageItemLevel)
     @$("#display_rating").text(data.pvp.ratedBattlegrounds.personalRating)
     @$("#display_resilience").text(data.stats.resil)
+    @$("#display_item_level").text(data.items.averageItemLevel)
     rank = @model.calculateRank(data)
     @$("#listing_rank").val(rank)
     @$("#display_rank").text(rank)
@@ -41,7 +43,7 @@ class ListingFormView extends Backbone.View
     creation = {}
     fields = [
       "realm", "character", "gender", "race", "character_class", "main_spec",
-      "off_spec", "rating", "rank", "resilience", "notes", "irc_name"
+      "off_spec", "rating", "rank", "resilience", "item_level", "notes", "irc_name"
     ]
     for field in fields
       creation[field] = @$("#listing_#{field}").val()

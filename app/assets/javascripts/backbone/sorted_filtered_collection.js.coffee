@@ -19,15 +19,23 @@ class SortedFilteredCollection extends Backbone.Collection
 
       if typeof data1 == "number"
         if @sortDir == "up"
-          data1 > data2
+          @compare(data1, data2)
         else
-          data1 < data2
+          @compare(data2, data1)
       else
         if @sortDir == "up"
-          data1 < data2
+          @compare(data2, data1)
         else
-          data1 > data2
+          @compare(data1, data2)
     @sort()
+
+  compare: (val1, val2) ->
+    if val1 > val2
+      1
+    else if val2 > val1
+      -1
+    else
+      0
 
   filterBy: (data) =>
     if data == false

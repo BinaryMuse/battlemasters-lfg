@@ -57,7 +57,7 @@ class SortedFilteredCollection extends Backbone.Collection
         model.trigger 'filter:hide'
 
   reapply: =>
-    @sort()
+    @sort() if @comparator?
     @refilter()
 
   refilter: =>

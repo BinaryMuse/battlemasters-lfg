@@ -1,8 +1,8 @@
 class SortedFilteredCollection extends Backbone.Collection
   initialize: ->
-    @on 'add', @reapply
-    @on 'remove', @reapply
-    @on 'reset', @reapply
+    @on 'add', @refilter
+    @on 'remove', @refilter
+    @on 'reset', @refilter
 
   sortByColumn: (col) =>
     if col == @sortBy && @sortDir == "down"
@@ -55,10 +55,6 @@ class SortedFilteredCollection extends Backbone.Collection
         model.trigger 'filter:show'
       else
         model.trigger 'filter:hide'
-
-  reapply: =>
-    @sort()
-    @refilter()
 
   refilter: =>
     @filterBy()

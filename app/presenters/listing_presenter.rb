@@ -1,3 +1,5 @@
+require 'uri'
+
 class ListingPresenter
   def initialize(model, template)
     @template = template
@@ -25,8 +27,8 @@ class ListingPresenter
   end
 
   def bnet_url
-    realm = CGI.escape @model.realm
-    character = CGI.escape @model.character
+    realm = URI.escape @model.realm
+    character = URI.escape @model.character
     "http://us.battle.net/wow/en/character/#{realm}/#{character}/advanced"
   end
 

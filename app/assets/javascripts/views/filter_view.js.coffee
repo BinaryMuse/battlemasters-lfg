@@ -1,7 +1,7 @@
 class FilterView extends Backbone.View
   el: "#filter"
   events:
-    'click a': 'showForm'
+    # 'click a': 'showForm'
     'change #filter_faction input': 'filterFaction'
 
   initialize: ->
@@ -26,7 +26,11 @@ class FilterView extends Backbone.View
     @$("form").slideDown()
 
   filterFaction: (evt) =>
-    @collection.filterBy
-      faction: $(evt.target).val()
+    filter = $(evt.target).val()
+    if filter == "both"
+      @collection.filterBy(false)
+    else
+      @collection.filterBy
+        faction: filter
 
 module.exports = FilterView

@@ -63,9 +63,11 @@
   <% end %>
 
   <div id="filter" class="hidden">
-    <a href="#">Filter the List</a>
-    <form id="filter_form" class="hidden">
+    <!-- <a href="#">Filter the List</a> -->
+    <form id="filter_form" class="not-hidden">
       <span id="filter_faction">
+        <input id="faction_both" type="radio" name="faction" value="both" checked="checked" />
+        <label for="faction_both">Both</label><br />
         <input id="faction_alliance" type="radio" name="faction" value="alliance" />
         <label for="faction_alliance">Alliance</label><br />
         <input id="faction_horde" type="radio" name="faction" value="horde" />

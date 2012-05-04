@@ -24,7 +24,7 @@ class FilterView extends Backbone.View
     @commitFilter()
 
   add: (model) =>
-    @filteredListings.add model if @filterBy == model.attributes.faction
+    @filteredListings.add model if @filterBy == model.attributes.faction || @filterBy == false
 
   remove: (model) =>
     @filteredListings.remove model

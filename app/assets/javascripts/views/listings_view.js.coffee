@@ -11,6 +11,9 @@ class ListingsView extends Backbone.View
     @collection.on 'reset', @render
     @collection.on 'add', @addListing
     @collection.on 'remove', @removeListing
+    # Super ugly hack
+    @collection.sortByColumn 'time_in_list'
+    @collection.sortByColumn 'time_in_list'
 
   render: =>
     $(@el).show()
@@ -26,6 +29,7 @@ class ListingsView extends Backbone.View
       @$(".empty").hide()
 
   addListing: (model, resort = true) =>
+    console.log 'adding a listing'
     view = new ListingView(model: model)
     model.view = view
     @$("tbody").append view.render().el

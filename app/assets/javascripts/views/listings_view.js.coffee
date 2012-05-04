@@ -9,14 +9,14 @@ class ListingsView extends Backbone.View
   initialize: ->
     @app = @options.app
     @collection.on 'reset', @render
-    @collection.on 'add', => @collection.sort()
+    @collection.on 'add', @addListing
     @collection.on 'remove', @removeListing
 
   render: =>
     $(@el).show()
     @$("tbody tr:not(.empty)").remove()
     _.each @collection.models, (model) =>
-      @addListing model
+      @addListing model, false
     @updatePlaceholder()
 
   updatePlaceholder: =>
@@ -25,11 +25,12 @@ class ListingsView extends Backbone.View
     else
       @$(".empty").hide()
 
-  addListing: (model) =>
+  addListing: (model, resort = true) =>
     view = new ListingView(model: model)
     model.view = view
     @$("tbody").append view.render().el
     @updatePlaceholder()
+    @collection.sort() if @collection.comparator && resort
 
   removeListing: (model) =>
     model.view.remove()

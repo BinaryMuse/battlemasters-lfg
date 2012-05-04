@@ -9,7 +9,7 @@ class ListingsView extends Backbone.View
   initialize: ->
     @app = @options.app
     @collection.on 'reset', @render
-    @collection.on 'add', @addListing
+    @collection.on 'add', => @collection.sort()
     @collection.on 'remove', @removeListing
 
   render: =>

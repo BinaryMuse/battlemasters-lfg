@@ -1,7 +1,6 @@
 Listing = require 'models/listing'
-SortedFilteredCollection = require 'backbone/sorted_filtered_collection'
 
-class Listings extends SortedFilteredCollection
+class Listings extends Backbone.Collection
   url: '/listings'
   model: Listing
 

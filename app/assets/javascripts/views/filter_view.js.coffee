@@ -1,36 +1,40 @@
 class FilterView extends Backbone.View
   el: "#filter"
   events:
-    # 'click a': 'showForm'
     'change #filter_faction input': 'filterFaction'
 
   initialize: ->
-    @collection.on 'reset', @showHideFilterLink
-    @collection.on 'add', @showHideFilterLink
-    @collection.on 'remove', @showHideFilterLink
+    @filteredListings = @options.filteredListings
+    @filterBy = false
 
-  showHideFilterLink: =>
-    if @collection.models.length
-      @showFilterLink()
-    else
-      @hideFilterLink()
-
-  showFilterLink: =>
-    $(@el).slideDown()
-
-  hideFilterLink: =>
-    $(@el).slideUp()
-
-  showForm: (evt) =>
-    evt.preventDefault()
-    @$("form").slideDown()
+    @collection.on 'reset', @reset
+    @collection.on 'add', @add
+    @collection.on 'remove', @remove
 
   filterFaction: (evt) =>
     filter = $(evt.target).val()
     if filter == "both"
-      @collection.filterBy(false)
+      @filterBy = false
     else
-      @collection.filterBy
-        faction: filter
+      @filterBy = filter
+
+    @commitFilter()
+
+  reset: (collection) =>
+    @commitFilter()
+
+  add: (model) =>
+    @filteredListings.add model if @filterBy == model.attributes.faction
+
+  remove: (model) =>
+    @filteredListings.remove model
+
+  commitFilter: (collection = null) =>
+    collection ?= @collection
+    if @filterBy == false
+      @filteredListings.reset collection.models
+    else
+      models = _.filter collection.models, (m) => m.attributes.faction == @filterBy
+      @filteredListings.reset models
 
 module.exports = FilterView

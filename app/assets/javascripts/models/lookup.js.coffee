@@ -16,7 +16,7 @@ class Lookup extends Backbone.Model
       error: (xOptions, textStatus) ->
         @trigger 'lookupFailure', textStatus
       success: (json, textStatus) ->
-        if json.level != 85
+        if json.level < 85
           @trigger 'lookupFailure', 'lowlevel'
         else
           @trigger 'lookupSuccess', json

@@ -3,7 +3,7 @@ require 'cgi'
 class Listing < ActiveRecord::Base
   validates_inclusion_of :character_class, in: Wow::CLASSES.keys
   validates_inclusion_of :race, in: Wow::RACES.keys
-  validates_inclusion_of :faction, in: %w[ alliance horde ]
+  validates_inclusion_of :faction, in: Wow::FACTIONS.values.map(&:to_s)
   validates_inclusion_of :gender, in: [0, 1]
   validates_presence_of  :realm
   validates_presence_of  :character

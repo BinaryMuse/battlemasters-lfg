@@ -103,15 +103,15 @@
 
 <script type="text/html" id="listing_row">
   <td>
-    <div class="sprites {{ faction_sprite }}" />
+    <div class="sprites blizzard-icons-{{ faction_sprite }}" />
   </td>
   <td>
-    <div class="sprites {{ race_sprite }}" />
-    <div class="sprites {{ class_sprite }}" />
+    <div class="sprites blizzard-icons-{{ race_sprite }}" />
+    <div class="sprites blizzard-icons-{{ class_sprite }}" />
     <a href="{{ bnet_url }}" class="{{ class_name }}" target="_blank">{{ character }}</a></td>
   <td><span data-tooltip="{{ battlegroup }}">{{ realm }}</span></td>
-  <td><div class="sprites {{ main_spec_sprite }}" data-tooltip="{{ main_spec}} " /></td>
-  <td><div class="sprites {{ off_spec_sprite }}" data-tooltip="{{ off_spec }}" /></td>
+  <td><div class="sprites blizzard-icons-{{ main_spec_sprite }}" data-tooltip="{{ main_spec}} " /></td>
+  <td><div class="sprites blizzard-icons-{{ off_spec_sprite }}" data-tooltip="{{ off_spec }}" /></td>
   <td>{{ rating }}</td>
   <td>{{ rank }}</td>
   <td>{{ resilience }}</td>

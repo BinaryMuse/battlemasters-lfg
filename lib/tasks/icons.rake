@@ -17,19 +17,53 @@ def download_icon(name, path)
 end
 
 namespace :icons do
+  desc "Download all the icons"
+  task :all => [:specs, :classes, :races, :factions]
+
   desc "Download the spec icons"
   task :specs => :environment do
-    downloaded_specs = []
     dir = Rails.root.join("app", "assets", "images", "blizzard-icons")
     system "mkdir -p #{dir}"
 
     Wow::SPECS.each do |klass, specs|
       specs.each do |name, icon|
         download_icon icon, dir
-        downloaded_specs << "#{klass}-#{name}"
       end
     end
+  end
 
-    puts "Downloaded #{downloaded_specs.uniq.count} spec icons"
+  desc "Download the class icons"
+  task :classes => :environment do
+    dir = Rails.root.join("app", "assets", "images", "blizzard-icons")
+    system "mkdir -p #{dir}"
+
+    Wow::CLASSES.each do |num, name|
+      icon = "class_#{num}"
+      download_icon icon, dir
+    end
+  end
+
+  desc "Download the race icons"
+  task :races => :environment do
+    dir = Rails.root.join("app", "assets", "images", "blizzard-icons")
+    system "mkdir -p #{dir}"
+
+    [0, 1].each do |gender|
+      Wow::RACES.each do |num, name|
+        icon = "race_#{num}_#{gender}"
+        download_icon icon, dir
+      end
+    end
+  end
+
+  desc "Download the faction icons"
+  task :factions => :environment do
+    dir = Rails.root.join("app", "assets", "images", "blizzard-icons")
+    system "mkdir -p #{dir}"
+
+    Wow::FACTIONS.each do |num, name|
+      icon = "faction_#{num}"
+      download_icon icon, dir
+    end
   end
 end

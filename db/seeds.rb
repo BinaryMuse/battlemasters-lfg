@@ -16,7 +16,7 @@ def realm_name
 end
 
 Listing.delete_all
-10.times do |n|
+50.times do |n|
   klass = Wow::CLASSES.keys.sample
   Listing.create!({
     character: Faker::Name.first_name,

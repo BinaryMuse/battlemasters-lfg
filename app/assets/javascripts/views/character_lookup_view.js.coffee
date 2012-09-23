@@ -24,7 +24,7 @@ class CharacterLookupView extends Backbone.View
     else if status == "error"
       alert "Couldn't find your character. Are you sure you spelled your realm and character name correctly?"
     else if status == 'lowlevel'
-      alert "You can only add level 85 characters to the LFG list."
+      alert "You can only add level 85 or higher characters to the LFG list."
     else
       alert "There was an unknown problem fetching your character. Please try again in a few moments."
 

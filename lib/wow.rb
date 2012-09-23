@@ -11,11 +11,20 @@ module Wow
     9  => :goblin,
     10 => :blood_elf,
     11 => :draenei,
-    22 => :worgen
+    22 => :worgen,
+    24 => :pandaren, # neutral
+    25 => :pandaren, # alliance
+    26 => :pandaren  # horde
   }
 
-  ALLIANCE_RACES = [1, 3, 4, 7, 11, 22]
-  HORDE_RACES    = [2, 5, 6, 8, 9, 10]
+  FACTIONS = {
+    0 => :alliance,
+    1 => :horde,
+    2 => :neutral
+  }
+
+  ALLIANCE_RACES = [1, 3, 4, 7, 11, 22, 25]
+  HORDE_RACES    = [2, 5, 6, 8, 9, 10, 26]
 
   def self.faction_by_race(faction)
     if ALLIANCE_RACES.include? faction
@@ -23,7 +32,7 @@ module Wow
     elsif HORDE_RACES.include? faction
       "horde"
     else
-      nil
+      "neutral"
     end
   end
 
@@ -42,6 +51,7 @@ module Wow
     7  => :shaman,
     8  => :mage,
     9  => :warlock,
+    10 => :monk,
     11 => :druid
   }
 
@@ -90,6 +100,11 @@ module Wow
       "Affliction" => "spell_shadow_deathcoil",
       "Demonology" => "spell_shadow_metamorphosis",
       "Destruction" => "spell_shadow_rainoffire"
+    },
+    10 => {
+      "Brewmaster" => "spell_monk_brewmaster_spec",
+      "Mistweaver" => "spell_monk_mistweaver_spec",
+      "Windwalker" => "spell_monk_windwalker_spec"
     },
     11 => {
       "Balance" => "spell_nature_starfall",

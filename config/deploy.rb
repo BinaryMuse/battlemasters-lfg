@@ -3,6 +3,7 @@ require "bundler/capistrano"
 require "whenever/capistrano"
 
 set :rvm_ruby_string,  "ruby-1.9.3"
+set :rvm_type,         :system
 set :application,      "battlemasters"
 set :repository,       "git@github.com:BinaryMuse/battlemasters-lfg.git"
 set :user,             "battlemasters"

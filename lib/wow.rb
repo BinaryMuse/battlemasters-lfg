@@ -94,7 +94,8 @@ module Wow
     11 => {
       "Balance" => "spell_nature_starfall",
       "Restoration" => "spell_nature_healingtouch",
-      "Feral Combat" => "ability_racial_bearform"
+      "Guardian" => "ability_racial_bearform",
+      "Feral" => "ability_druid_catform"
     }
   }
 

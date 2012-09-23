@@ -4,48 +4,29 @@ require 'net/http'
 require 'uri'
 require 'json'
 
+def download_icon(name, path)
+  jpg_file_name = name + '.jpg'
+  png_file_name = name + '.png'
+  jpg_file_path = path.join(jpg_file_name)
+  png_file_path = path.join(png_file_name)
+  http_path = "http://us.media.blizzard.com/wow/icons/18/#{jpg_file_name}"
+
+  system "curl #{http_path} > #{jpg_file_path}"
+  system "convert #{jpg_file_path} #{png_file_path}"
+  system "rm #{jpg_file_path}"
+end
+
 namespace :icons do
   desc "Download the spec icons"
   task :specs => :environment do
-    dir = Rails.root.join("app", "assets", "images", "blizzard", "spell")
     downloaded_specs = []
-    profiles = [
-      "http://us.battle.net/wow/en/character/tichondrius/Mes/simple",
-      "http://us.battle.net/wow/en/character/mugthol/Subtronix/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Thegodofdmg/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Ludachris/simple",
-      "http://us.battle.net/wow/en/character/malganis/Peterb/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Kurum/simple",
-      "http://us.battle.net/wow/en/character/lightbringer/Arrowsoftime/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Majinvenruki/simple",
-      "http://us.battle.net/wow/en/character/arygos/Bottles/simple",
-      "http://us.battle.net/wow/en/character/blackrock/Notchilli/simple",
-      "http://us.battle.net/wow/en/character/black-dragonflight/Mikalol/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Sodez/simple",
-      "http://us.battle.net/wow/en/character/barthilas/Cupcakeqt/simple",
-      "http://us.battle.net/wow/en/character/tichondrius/Rzn/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Oribis/simple",
-      "http://us.battle.net/wow/en/character/sargeras/Kask%C3%A5/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Jahmillz/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Drfilomd/simple",
-      "http://us.battle.net/wow/en/character/barthilas/Jidox/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Xanaduz/simple",
-      "http://us.battle.net/wow/en/character/kelthuzad/Sin%C3%ACx/simple"
-    ]
+    dir = Rails.root.join("app", "assets", "images", "blizzard-icons")
+    system "mkdir -p #{dir}"
 
-    profiles.each do |profile|
-      match = profile.match /character\/(.*)\/(.*)\/simple$/
-      realm, char = match[1], match[2]
-
-      url = "http://us.battle.net/api/wow/character/#{realm}/#{char}?fields=talents"
-      uri = URI.parse url
-      response = Net::HTTP.get_response uri
-      body = response.body
-
-      data = JSON.parse body
-      data["talents"].each do |spec|
-        downloaded_specs << data["class"].to_s + "-" + spec["name"]
-        system "curl 'http://us.media.blizzard.com/wow/icons/18/#{spec['icon']}.jpg' >> '#{dir.join(spec["icon"] + ".jpg")}'"
+    Wow::SPECS.each do |klass, specs|
+      specs.each do |name, icon|
+        download_icon icon, dir
+        downloaded_specs << "#{klass}-#{name}"
       end
     end
 

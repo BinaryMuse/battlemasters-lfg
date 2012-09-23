@@ -25,4 +25,5 @@ gem 'haml'
 gem 'stitch_rails', git: "git://github.com/BinaryMuse/stitch_rails.git", ref: "6b7b2b16"
 
 gem 'capistrano'
+gem 'rvm-capistrano'
 gem 'whenever', require: false

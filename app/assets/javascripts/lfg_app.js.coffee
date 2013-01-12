@@ -19,7 +19,7 @@ class LfgApp
   start: =>
     @listings.reset window.preloadListings
     Backbone.history.start(silent: false)
-    setInterval @updateListings, 60 * 1000
+    setInterval @updateListings, 180 * 1000
     setInterval @updateListTime, TIME_UPDATE * 1000
 
   updateListings: =>
